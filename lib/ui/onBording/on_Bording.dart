@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lady_taxi/data/models/on_Bording_model.dart';
+import 'package:lady_taxi/ui/registery/enter_phone_number.dart';
 import 'package:lady_taxi/utils/my_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -79,9 +80,17 @@ class _OnBordingPageState extends State<OnBordingPage> {
               ),
               InkWell(
                 onTap: () {
-                  _pageController.nextPage(
-                      duration: const Duration(seconds: 1),
-                      curve: Curves.decelerate);
+                  if (txt == "Start") {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const EnterNumberPage(),
+                        ));
+                  } else {
+                    _pageController.nextPage(
+                        duration: const Duration(seconds: 1),
+                        curve: Curves.decelerate);
+                  }
                 },
                 child: Container(
                   margin:

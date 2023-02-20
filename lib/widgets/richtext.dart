@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:lady_taxi/data/models/on_Bording_model.dart';
 import 'package:lady_taxi/utils/my_utils.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class MYRichText extends StatelessWidget {
   int index;
@@ -13,7 +14,7 @@ class MYRichText extends StatelessWidget {
     return RichText(
       textAlign: TextAlign.center,
       text: TextSpan(
-        style: const TextStyle(
+        style: GoogleFonts.roboto(
           fontSize: 20.0,
           color: Colors.black,
         ),
