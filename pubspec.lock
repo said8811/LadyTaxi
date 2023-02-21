@@ -123,6 +123,11 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_web_plugins:
+    dependency: transitive
+    description: flutter
+    source: sdk
+    version: "0.0.0"
   google_fonts:
     dependency: "direct dev"
     description:
@@ -259,6 +264,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.1.0"
+  pin_code_text_field:
+    dependency: "direct dev"
+    description:
+      name: pin_code_text_field
+      sha256: "3484c3ed4731327688734596d1fba1741f75da19366055116ecedcdffd87741a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.8.0"
   platform:
     dependency: transitive
     description:
@@ -336,6 +349,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.4.16"
+  toast:
+    dependency: "direct dev"
+    description:
+      name: toast
+      sha256: "12433091e3e5a25b3a25f670126e42547c9ade135de30ad9ace45d1ddccd57c9"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.0"
   typed_data:
     dependency: transitive
     description:

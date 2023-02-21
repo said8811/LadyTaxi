@@ -29,10 +29,19 @@ class _OnBordingPageState extends State<OnBordingPage> {
             children: [
               Padding(
                 padding: EdgeInsets.only(top: 40.sp, left: 300.sp),
-                child: Text(
-                  "Skip",
-                  style: TextStyle(color: MyColors.C_FD0166),
-                  textAlign: TextAlign.end,
+                child: InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const EnterNumberPage(),
+                        ));
+                  },
+                  child: Text(
+                    "Skip",
+                    style: TextStyle(color: MyColors.C_FD0166, fontSize: 16.sp),
+                    textAlign: TextAlign.end,
+                  ),
                 ),
               ),
               SizedBox(
@@ -89,7 +98,7 @@ class _OnBordingPageState extends State<OnBordingPage> {
                   } else {
                     _pageController.nextPage(
                         duration: const Duration(seconds: 1),
-                        curve: Curves.decelerate);
+                        curve: Curves.fastOutSlowIn);
                   }
                 },
                 child: Container(
