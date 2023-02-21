@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:lady_taxi/ui/registery/profile_create_page.dart';
 import 'package:pin_code_text_field/pin_code_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -115,7 +116,14 @@ class _EnterPinCodePageState extends State<EnterPinCodePage> {
             Spacer(),
             InkWell(
               onTap: () {
-                if (controller.text.length == 4) {}
+                if (controller.text.length == 4) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ProfileCreatePage(),
+                    ),
+                  );
+                }
               },
               child: Container(
                 margin: const EdgeInsets.only(bottom: 24).r,
