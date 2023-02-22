@@ -50,6 +50,7 @@ dev_dependencies:
   flutter_svg: ^2.0.1
   google_fonts: ^4.0.3
   pin_code_text_field: ^1.8.0
+  sqflite: ^2.2.4+1
   toast: ^0.3.0
 
 # For information on the generic Dart part of this file, see the
