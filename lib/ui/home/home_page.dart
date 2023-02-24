@@ -37,7 +37,6 @@ class _HomePageState extends State<HomePage> {
                 child: GoogleMap(
                   padding: const EdgeInsets.all(16),
                   myLocationEnabled: true,
-                  // liteModeEnabled: true,
                   zoomControlsEnabled: false,
                   zoomGesturesEnabled: true,
                   mapType: MapType.normal,
