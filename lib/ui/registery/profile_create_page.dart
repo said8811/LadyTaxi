@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lady_taxi/data/local_data/local_database.dart';
+import 'package:lady_taxi/data/models/user_model.dart';
+import 'package:lady_taxi/ui/home/home_page.dart';
 import 'package:lady_taxi/ui/registery/enter_phone_number.dart';
 import 'package:lady_taxi/utils/my_utils.dart';
 
@@ -13,6 +16,8 @@ class ProfileCreatePage extends StatefulWidget {
 
 class _ProfileCreatePageState extends State<ProfileCreatePage> {
   final _formKey = GlobalKey<FormState>();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController dateController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,6 +55,7 @@ class _ProfileCreatePageState extends State<ProfileCreatePage> {
                           return "Iltimos ism sharifingizni kiriting";
                         }
                       },
+                      controller: nameController,
                       decoration: InputDecoration(
                           filled: true,
                           fillColor: Colors.grey[100],
@@ -65,6 +71,7 @@ class _ProfileCreatePageState extends State<ProfileCreatePage> {
                           return "Iltimos tug'ilgan sanangizni kiriting";
                         }
                       },
+                      controller: dateController,
                       decoration: InputDecoration(
                           filled: true,
                           fillColor: Colors.grey[100],
@@ -80,10 +87,16 @@ class _ProfileCreatePageState extends State<ProfileCreatePage> {
               InkWell(
                 onTap: () {
                   if (_formKey.currentState!.validate()) {
+                    LocalDatabase.insertUser(
+                        userModel: UserModel(
+                            fish: nameController.text,
+                            date: dateController.text,
+                            number: "+998994660811",
+                            imgUrl: ""));
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const EnterNumberPage(),
+                          builder: (context) => const HomePage(),
                         ));
                   }
                 },

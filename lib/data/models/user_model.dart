@@ -18,7 +18,7 @@ class UserModel {
       required this.fish,
       required this.date,
       required this.number,
-      this.imgUrl = ""});
+      required this.imgUrl});
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(

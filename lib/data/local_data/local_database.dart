@@ -34,7 +34,8 @@ class LocalDatabase {
           ${UserField.id} $idType,
           ${UserField.fish} $textType,
           ${UserField.date} $textType,
-          ${UserField.number} $textType
+          ${UserField.number} $textType,
+          ${UserField.imgUrl} $textType
             )
             ''');
       },
