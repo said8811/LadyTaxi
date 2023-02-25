@@ -1,3 +1,4 @@
+import 'package:lady_taxi/data/models/app_model.dart';
 import 'package:lady_taxi/data/models/lat_long_model.dart';
 
 abstract class LocationState {}
@@ -11,5 +12,6 @@ class LoadLocationINError extends LocationState {
 
 class LoadLocationINSucces extends LocationState {
   LatLong position;
-  LoadLocationINSucces({required this.position});
+  String locationName;
+  LoadLocationINSucces({required this.position, required this.locationName});
 }

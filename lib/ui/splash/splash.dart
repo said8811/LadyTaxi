@@ -3,8 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lady_taxi/cubit/location_cubit.dart';
 import 'package:lady_taxi/cubit/location_state.dart';
+import 'package:lady_taxi/data/api/api_service.dart';
 import 'package:lady_taxi/data/local_data/local_database.dart';
 import 'package:lady_taxi/data/models/user_model.dart';
+import 'package:lady_taxi/data/repository/geo_coding.dart';
 import 'package:lady_taxi/data/repository/location_repository.dart';
 import 'package:lady_taxi/ui/home/home_page.dart';
 import 'package:lady_taxi/ui/onBording/on_Bording.dart';
@@ -45,9 +47,10 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          LocationCubit(locationRepository: LocationRepository())
-            ..getLocation(),
+      create: (context) => LocationCubit(
+          locationRepository: LocationRepository(),
+          geocodingRepo: GeocodingRepo(apiService: ApiService()))
+        ..getLocation(),
       child: BlocConsumer<LocationCubit, LocationState>(
         builder: (context, state) {
           return Scaffold(
