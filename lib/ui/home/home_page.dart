@@ -6,6 +6,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:lady_taxi/cubit/location_cubit.dart';
 import 'package:lady_taxi/cubit/location_state.dart';
@@ -32,15 +33,43 @@ class _HomePageState extends State<HomePage> {
       builder: (context) {
         return DraggableScrollableSheet(
           expand: false,
-          initialChildSize: 0.4,
+          initialChildSize: 0.25,
           maxChildSize: 0.98,
-          minChildSize: 0.25,
+          minChildSize: 0.20,
           builder: (context, scrollController) => SingleChildScrollView(
             controller: scrollController,
             child: Container(
-              height: 300.h,
-              child: Center(
-                child: Text(location),
+              padding: const EdgeInsets.all(24).r,
+              height: 200.h,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SvgPicture.asset("assets/svg/mark.json"),
+                  SizedBox(height: 8.h),
+                  Text(
+                    location,
+                    maxLines: 3,
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      fontSize: 18.sp,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  const Spacer(),
+                  Container(
+                    height: 47.h,
+                    decoration: BoxDecoration(
+                        color: MyColors.C_FE2E81,
+                        borderRadius: BorderRadius.circular(25)),
+                    child: Center(
+                      child: Text(
+                        "Jo'nash manzilim",
+                        style: GoogleFonts.roboto(
+                            fontSize: 16.sp, color: Colors.white),
+                      ),
+                    ),
+                  )
+                ],
               ),
             ),
           ),
