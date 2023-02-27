@@ -18,6 +18,16 @@ class _ProfileCreatePageState extends State<ProfileCreatePage> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController nameController = TextEditingController();
   TextEditingController dateController = TextEditingController();
+  late List<UserModel> users;
+  getUser() async {
+    users = await LocalDatabase.getCachedUser();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,7 +95,7 @@ class _ProfileCreatePageState extends State<ProfileCreatePage> {
               ),
               const Spacer(),
               InkWell(
-                onTap: () {
+                onTap: () async {
                   if (_formKey.currentState!.validate()) {
                     LocalDatabase.insertUser(
                         userModel: UserModel(
@@ -96,7 +106,9 @@ class _ProfileCreatePageState extends State<ProfileCreatePage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const HomePage(),
+                          builder: (context) => HomePage(
+                            user: users.last,
+                          ),
                         ));
                   }
                 },

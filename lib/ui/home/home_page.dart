@@ -10,11 +10,16 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:lady_taxi/cubit/location_cubit.dart';
 import 'package:lady_taxi/cubit/location_state.dart';
+import 'package:lady_taxi/data/local_data/local_database.dart';
+import 'package:lady_taxi/data/models/drawer_model.dart';
 import 'package:lady_taxi/data/models/lat_long_model.dart';
+import 'package:lady_taxi/data/models/user_model.dart';
 import 'package:lady_taxi/utils/my_utils.dart';
+import 'package:lady_taxi/widgets/drawer_widget.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  UserModel user;
+  HomePage({super.key, required this.user});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -23,6 +28,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final Completer<GoogleMapController> _controller =
       Completer<GoogleMapController>();
+  final GlobalKey<ScaffoldState> _key = GlobalKey();
   String location = "";
   void _showModalBottomSheet(BuildContext context) {
     showModalBottomSheet(
@@ -78,14 +84,78 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  _getUser() async {
+    List users = await LocalDatabase.getCachedUser();
+  }
+
   @override
   void initState() {
+    // _getUser();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _key,
+      drawer: Drawer(
+        child: Column(
+          children: [
+            Container(
+              height: 275.h,
+              child: DrawerHeader(
+                duration: const Duration(seconds: 2),
+                curve: Curves.bounceInOut,
+                padding: const EdgeInsets.all(0),
+                margin: EdgeInsets.zero,
+                child: Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: MyColors.C_FE2E81,
+                  ),
+                  child: Stack(
+                    children: [
+                      SvgPicture.asset(
+                        "assets/svg/drawer_background.json",
+                        fit: BoxFit.cover,
+                      ),
+                      Positioned(
+                        left: 25.w,
+                        bottom: 24.h,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SvgPicture.asset(
+                              "assets/svg/edit_icon.json",
+                              width: 88.w,
+                            ),
+                            SizedBox(height: 18.h),
+                            Text(
+                              widget.user.fish,
+                              style: GoogleFonts.poppins(
+                                  fontSize: 20.sp,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            Text(
+                              widget.user.number,
+                              style: GoogleFonts.poppins(
+                                  color: Colors.white, fontSize: 15.sp),
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            const Expanded(
+              child: DrawerWidget(),
+            ),
+          ],
+        ),
+      ),
       body: SafeArea(
         child: BlocConsumer<LocationCubit, LocationState>(
           builder: (context, state) {
@@ -113,16 +183,21 @@ class _HomePageState extends State<HomePage> {
                   Positioned(
                       left: 20,
                       top: 32,
-                      child: Container(
-                        padding: const EdgeInsets.all(8).r,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(8)),
-                        width: 32.w,
-                        height: 32.h,
-                        child: SvgPicture.asset(
-                          "assets/svg/drawer.json",
-                          fit: BoxFit.cover,
+                      child: InkWell(
+                        onTap: () {
+                          _key.currentState!.openDrawer();
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(8).r,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(8)),
+                          width: 32.w,
+                          height: 32.h,
+                          child: SvgPicture.asset(
+                            "assets/svg/drawer.json",
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       )),
                 ],
