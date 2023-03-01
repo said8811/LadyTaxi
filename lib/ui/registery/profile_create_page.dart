@@ -51,7 +51,7 @@ class _ProfileCreatePageState extends State<ProfileCreatePage> {
             children: [
               SizedBox(height: 32.h),
               SvgPicture.asset(
-                "assets/svg/edit_icon.json",
+                "assets/svg/edit_icon.svg",
                 width: 102.w,
               ),
               SizedBox(height: 33.h),
