@@ -126,7 +126,7 @@ class _HomePageState extends State<HomePage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SvgPicture.asset(
-                              "assets/svg/edit_icon.json",
+                              "assets/svg/edit_icon.svg",
                               width: 88.w,
                             ),
                             SizedBox(height: 18.h),
@@ -195,7 +195,7 @@ class _HomePageState extends State<HomePage> {
                           width: 32.w,
                           height: 32.h,
                           child: SvgPicture.asset(
-                            "assets/svg/drawer.json",
+                            "assets/svg/drawer.svg",
                             fit: BoxFit.cover,
                           ),
                         ),

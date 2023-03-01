@@ -22,7 +22,6 @@ class _SplashPageState extends State<SplashPage> {
   _nextPage() {
     Future.delayed(const Duration(seconds: 1)).then((value) async {
       List<UserModel> user = await LocalDatabase.getCachedUser();
-      //print(user);
       if (user.isEmpty) {
         Navigator.pushReplacement(
             context,
@@ -33,10 +32,9 @@ class _SplashPageState extends State<SplashPage> {
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => HomePage(
-                user: user.last,
-              ),
-            ));
+                builder: (context) => HomePage(
+                      user: user.last,
+                    )));
       }
     });
   }

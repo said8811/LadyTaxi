@@ -14,28 +14,28 @@ class DrawerModel {
       title: "Profil",
       color: Colors.black,
       icon: SvgPicture.asset(
-        "assets/svg/person.json",
+        "assets/svg/person.svg",
       ),
     ),
     DrawerModel(
       title: "Safarlar tarixi",
       color: Colors.black,
       icon: SvgPicture.asset(
-        "assets/svg/history.json",
+        "assets/svg/history.svg",
       ),
     ),
     DrawerModel(
       title: "Sozlamalar",
       color: Colors.black,
       icon: SvgPicture.asset(
-        "assets/svg/settings.json",
+        "assets/svg/settings.svg",
       ),
     ),
     DrawerModel(
       title: "Chiqish",
       color: MyColors.C_FD0166,
       icon: SvgPicture.asset(
-        "assets/svg/exit.json",
+        "assets/svg/exit.svg",
       ),
     ),
   ];
