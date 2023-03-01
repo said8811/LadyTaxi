@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SvgPicture.asset("assets/svg/mark.json"),
+                  SvgPicture.asset("assets/svg/mark.svg"),
                   SizedBox(height: 8.h),
                   Text(
                     location,
@@ -116,7 +116,7 @@ class _HomePageState extends State<HomePage> {
                   child: Stack(
                     children: [
                       SvgPicture.asset(
-                        "assets/svg/drawer_background.json",
+                        "assets/svg/drawer_background.svg",
                         fit: BoxFit.cover,
                       ),
                       Positioned(
