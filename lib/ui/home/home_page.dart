@@ -16,6 +16,7 @@ import 'package:lady_taxi/data/models/lat_long_model.dart';
 import 'package:lady_taxi/data/models/user_model.dart';
 import 'package:lady_taxi/utils/my_utils.dart';
 import 'package:lady_taxi/widgets/drawer_widget.dart';
+import 'package:lady_taxi/widgets/navigator_push_widget.dart';
 
 class HomePage extends StatefulWidget {
   UserModel user;
@@ -84,13 +85,8 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  _getUser() async {
-    List users = await LocalDatabase.getCachedUser();
-  }
-
   @override
   void initState() {
-    // _getUser();
     super.initState();
   }
 
@@ -150,8 +146,11 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            const Expanded(
-              child: DrawerWidget(),
+            Expanded(
+              child: DrawerWidget(
+                context: context,
+                user: widget.user,
+              ),
             ),
           ],
         ),
@@ -221,7 +220,7 @@ class _HomePageState extends State<HomePage> {
           );
         },
         child: SvgPicture.asset(
-          "assets/svg/direction.json",
+          "assets/svg/direction.svg",
           // ignore: deprecated_member_use
           color: MyColors.C_FE2E81,
         ),

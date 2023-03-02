@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:lady_taxi/data/models/drawer_model.dart';
+import 'package:lady_taxi/data/models/user_model.dart';
+import 'package:lady_taxi/widgets/navigator_push_widget.dart';
 
 class DrawerWidget extends StatelessWidget {
-  const DrawerWidget({super.key});
+  BuildContext context;
+  UserModel user;
+  DrawerWidget({super.key, required this.context, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -12,11 +16,16 @@ class DrawerWidget extends StatelessWidget {
       padding: EdgeInsets.zero,
       itemCount: 4,
       itemBuilder: (context, index) {
-        return ListTile(
-          leading: DrawerModel.drawerModel[index].icon,
-          title: Text(
-            DrawerModel.drawerModel[index].title,
-            style: TextStyle(color: DrawerModel.drawerModel[index].color),
+        return InkWell(
+          onTap: () {
+            NavigatorPush(context, index, user);
+          },
+          child: ListTile(
+            leading: DrawerModel.drawerModel[index].icon,
+            title: Text(
+              DrawerModel.drawerModel[index].title,
+              style: TextStyle(color: DrawerModel.drawerModel[index].color),
+            ),
           ),
         );
       },

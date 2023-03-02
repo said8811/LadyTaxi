@@ -18,7 +18,7 @@ class _ProfileCreatePageState extends State<ProfileCreatePage> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController nameController = TextEditingController();
   TextEditingController dateController = TextEditingController();
-  late List<UserModel> users;
+  List<UserModel> users = [];
   getUser() async {
     users = await LocalDatabase.getCachedUser();
   }
@@ -103,6 +103,7 @@ class _ProfileCreatePageState extends State<ProfileCreatePage> {
                             date: dateController.text,
                             number: "+998994660811",
                             imgUrl: ""));
+                    getUser();
                     Navigator.push(
                         context,
                         MaterialPageRoute(
