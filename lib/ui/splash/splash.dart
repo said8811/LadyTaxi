@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lady_taxi/cubit/location_cubit.dart';
-import 'package:lady_taxi/cubit/location_state.dart';
-import 'package:lady_taxi/data/api/api_service.dart';
+import 'package:lady_taxi/cubit/location_cubit/location_cubit.dart';
+import 'package:lady_taxi/cubit/location_cubit/location_state.dart';
+import 'package:lady_taxi/data/api/location_api/api_service.dart';
 import 'package:lady_taxi/data/local_data/local_database.dart';
 import 'package:lady_taxi/data/models/user_model.dart';
 import 'package:lady_taxi/data/repository/geo_coding.dart';

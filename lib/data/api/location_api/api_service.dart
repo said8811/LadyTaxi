@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:lady_taxi/data/api/api_clint.dart';
+import 'package:lady_taxi/data/api/location_api/api_clint.dart';
 import 'package:lady_taxi/data/geocoding/geocoding.dart';
 import 'package:lady_taxi/data/models/app_model.dart';
 

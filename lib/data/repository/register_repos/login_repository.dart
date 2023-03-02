@@ -1,0 +1,9 @@
+import 'package:lady_taxi/data/api/register_api/api_service.dart';
+import 'package:lady_taxi/data/models/app_model.dart';
+
+class RegisterRepository {
+  RegisterRepository({required this.apiService});
+  RegisterApiService apiService;
+
+  Future<AppResponse> login(String number) => apiService.loginRequest(number);
+}

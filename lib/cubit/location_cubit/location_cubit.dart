@@ -1,10 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lady_taxi/cubit/location_state.dart';
+import 'package:lady_taxi/cubit/location_cubit/location_state.dart';
 import 'package:lady_taxi/data/models/app_model.dart';
+import 'package:lady_taxi/data/models/lat_long_model.dart';
 import 'package:lady_taxi/data/repository/geo_coding.dart';
 import 'package:lady_taxi/data/repository/location_repository.dart';
-
-import '../data/models/lat_long_model.dart';
 
 class LocationCubit extends Cubit<LocationState> {
   LocationCubit({required this.locationRepository, required this.geocodingRepo})
