@@ -12,7 +12,7 @@ class RegisterApiClient {
   _init() {
     dio = Dio(
       BaseOptions(
-        baseUrl: "http://3.75.239.91:9000/v1/",
+        baseUrl: "http://3.75.239.91:9000/v1",
         connectTimeout: const Duration(seconds: 25000),
         receiveTimeout: const Duration(seconds: 20000),
       ),

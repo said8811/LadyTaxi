@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lady_taxi/cubit/location_cubit/location_cubit.dart';
 import 'package:lady_taxi/cubit/register_cubit/register_cubit.dart';
+import 'package:lady_taxi/cubit/verify_cubit/verify_cubit.dart';
 import 'package:lady_taxi/data/api/location_api/api_service.dart';
 import 'package:lady_taxi/data/api/register_api/api_service.dart';
 import 'package:lady_taxi/data/repository/geo_coding.dart';
@@ -22,6 +23,11 @@ void main() {
     BlocProvider(
       create: (context) => RegisterCubit(
           repository: RegisterRepository(apiService: RegisterApiService())),
+    ),
+    BlocProvider(
+      create: (context) => VerifyCubit(
+          registerRepository:
+              RegisterRepository(apiService: RegisterApiService())),
     )
   ], child: const MyApp()));
 }
