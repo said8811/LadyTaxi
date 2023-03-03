@@ -9,4 +9,8 @@ class RegisterRepository {
 
   Future<AppResponse> verify(String number, String code) =>
       apiService.verifyUser(number, code);
+
+  Future<AppResponse> registerUser(
+          String fullName, String gender, String token) =>
+      apiService.Registery(fullName, gender, token);
 }

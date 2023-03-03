@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lady_taxi/data/local_data/local_database.dart';
-import 'package:lady_taxi/data/models/user_model.dart';
+import 'package:lady_taxi/data/models/register_models/verify_model.dart';
 import 'package:lady_taxi/utils/my_utils.dart';
 
 class ProfileSettingsPage extends StatefulWidget {
@@ -52,7 +50,7 @@ class _ProfileSettingsPageState extends State<ProfileSettingsPage> {
                           return "Iltimos ism sharifingizni kiriting";
                         }
                       },
-                      initialValue: widget.user.fish,
+                      initialValue: widget.user.fullName,
                       decoration: InputDecoration(
                           suffixIcon: Padding(
                             padding: const EdgeInsets.all(12).r,
@@ -74,7 +72,7 @@ class _ProfileSettingsPageState extends State<ProfileSettingsPage> {
                           return "Iltimos raqamingizni kiriting";
                         }
                       },
-                      initialValue: widget.user.number,
+                      initialValue: widget.user.phoneNumber,
                       keyboardType: TextInputType.phone,
                       decoration: InputDecoration(
                           filled: true,
@@ -101,7 +99,7 @@ class _ProfileSettingsPageState extends State<ProfileSettingsPage> {
                             borderRadius: BorderRadius.circular(12.r)),
                         child: Row(
                           children: [
-                            Text(widget.user.date),
+                            Text(widget.user.createdAt ?? ""),
                             const Spacer(),
                             SvgPicture.asset("assets/svg/calendar.svg")
                           ],
@@ -111,14 +109,7 @@ class _ProfileSettingsPageState extends State<ProfileSettingsPage> {
                     SizedBox(height: 20.h),
                     InkWell(
                       onTap: () async {
-                        if (_formKey.currentState!.validate()) {
-                          LocalDatabase.insertUser(
-                              userModel: UserModel(
-                                  fish: nameController.text,
-                                  date: dateController.text,
-                                  number: "+998994660811",
-                                  imgUrl: ""));
-                        }
+                        if (_formKey.currentState!.validate()) {}
                       },
                       child: Container(
                         margin: const EdgeInsets.only(bottom: 24).r,

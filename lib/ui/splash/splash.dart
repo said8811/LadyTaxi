@@ -5,9 +5,11 @@ import 'package:lady_taxi/cubit/location_cubit/location_cubit.dart';
 import 'package:lady_taxi/cubit/location_cubit/location_state.dart';
 import 'package:lady_taxi/data/api/location_api/api_service.dart';
 import 'package:lady_taxi/data/local_data/local_database.dart';
+import 'package:lady_taxi/data/models/register_models/verify_model.dart';
 import 'package:lady_taxi/data/models/user_model.dart';
 import 'package:lady_taxi/data/repository/geo_coding.dart';
 import 'package:lady_taxi/data/repository/location_repository.dart';
+import 'package:lady_taxi/data/repository/user_repository.dart';
 import 'package:lady_taxi/ui/home/home_page.dart';
 import 'package:lady_taxi/ui/onBording/on_Bording.dart';
 
@@ -19,10 +21,10 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-  _nextPage() {
+  _nextPage() async {
+    String id = await StorageRepository.getId();
     Future.delayed(const Duration(seconds: 1)).then((value) async {
-      List<UserModel> user = await LocalDatabase.getCachedUser();
-      if (user.isEmpty) {
+      if (id.isEmpty) {
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(
@@ -30,11 +32,13 @@ class _SplashPageState extends State<SplashPage> {
             ));
       } else {
         Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-                builder: (context) => HomePage(
-                      user: user.last,
-                    )));
+          context,
+          MaterialPageRoute(
+            builder: (context) => HomePage(
+              user: id,
+            ),
+          ),
+        );
       }
     });
   }

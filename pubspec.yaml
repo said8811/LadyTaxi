@@ -46,6 +46,7 @@ dependencies:
   json_serializable: ^6.6.1
   location: ^4.4.0
   flutter_bloc: ^8.1.2
+  shared_preferences: ^2.0.18
   toast: ^0.3.0
 
 dev_dependencies:

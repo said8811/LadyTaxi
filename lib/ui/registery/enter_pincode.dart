@@ -154,7 +154,9 @@ class _EnterPinCodePageState extends State<EnterPinCodePage> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const ProfileCreatePage(),
+                builder: (context) => ProfileCreatePage(
+                  token: state.verifyModel.accessToken ?? "",
+                ),
               ),
             );
           }

@@ -1,8 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -10,10 +8,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:lady_taxi/cubit/location_cubit/location_cubit.dart';
 import 'package:lady_taxi/cubit/location_cubit/location_state.dart';
-import 'package:lady_taxi/data/local_data/local_database.dart';
 import 'package:lady_taxi/data/models/drawer_model.dart';
 import 'package:lady_taxi/data/models/lat_long_model.dart';
-import 'package:lady_taxi/data/models/user_model.dart';
+import 'package:lady_taxi/data/models/register_models/verify_model.dart';
 import 'package:lady_taxi/utils/my_utils.dart';
 import 'package:lady_taxi/widgets/drawer_widget.dart';
 import 'package:lady_taxi/widgets/navigator_push_widget.dart';
@@ -127,14 +124,14 @@ class _HomePageState extends State<HomePage> {
                             ),
                             SizedBox(height: 18.h),
                             Text(
-                              widget.user.fish,
+                              widget.user.fullName!,
                               style: GoogleFonts.poppins(
                                   fontSize: 20.sp,
                                   color: Colors.white,
                                   fontWeight: FontWeight.w500),
                             ),
                             Text(
-                              widget.user.number,
+                              widget.user.phoneNumber!,
                               style: GoogleFonts.poppins(
                                   color: Colors.white, fontSize: 15.sp),
                             )

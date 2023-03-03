@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:lady_taxi/data/models/drawer_model.dart';
-import 'package:lady_taxi/data/models/user_model.dart';
+import 'package:lady_taxi/data/models/register_models/verify_model.dart';
 import 'package:lady_taxi/widgets/navigator_push_widget.dart';
 
 class DrawerWidget extends StatelessWidget {
