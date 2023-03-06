@@ -3,8 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lady_taxi/cubit/location_cubit/location_cubit.dart';
 import 'package:lady_taxi/cubit/location_cubit/location_state.dart';
+import 'package:lady_taxi/cubit/user_cubit/user_cubit.dart';
 import 'package:lady_taxi/data/api/location_api/api_service.dart';
 import 'package:lady_taxi/data/local_data/local_database.dart';
+import 'package:lady_taxi/data/models/lat_long_model.dart';
 import 'package:lady_taxi/data/models/register_models/verify_model.dart';
 import 'package:lady_taxi/data/models/user_model.dart';
 import 'package:lady_taxi/data/repository/geo_coding.dart';
@@ -22,20 +24,22 @@ class SplashPage extends StatefulWidget {
 
 class _SplashPageState extends State<SplashPage> {
   _nextPage() async {
-    String id = await StorageRepository.getId();
+    String id = "a";
+
     Future.delayed(const Duration(seconds: 1)).then((value) async {
       if (id.isEmpty) {
         Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const OnBordingPage(),
-            ));
+          context,
+          MaterialPageRoute(
+            builder: (context) => OnBordingPage(),
+          ),
+        );
       } else {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
             builder: (context) => HomePage(
-              user: id,
+              user: UserModel(),
             ),
           ),
         );
@@ -43,8 +47,15 @@ class _SplashPageState extends State<SplashPage> {
     });
   }
 
+  String id = "";
+  _getId() async {
+    id = await StorageRepository.getId();
+    print("ID:$id");
+  }
+
   @override
   void initState() {
+    _getId();
     super.initState();
   }
 

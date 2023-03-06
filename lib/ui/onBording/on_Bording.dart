@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lady_taxi/data/models/lat_long_model.dart';
 import 'package:lady_taxi/data/models/on_Bording_model.dart';
 import 'package:lady_taxi/ui/registery/enter_phone_number.dart';
 import 'package:lady_taxi/utils/my_utils.dart';
@@ -8,7 +9,11 @@ import 'package:lady_taxi/widgets/indicator.dart';
 import 'package:lady_taxi/widgets/richtext.dart';
 
 class OnBordingPage extends StatefulWidget {
-  const OnBordingPage({Key? key}) : super(key: key);
+  // LatLong latlong;
+  // String location;
+  OnBordingPage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<OnBordingPage> createState() => _OnBordingPageState();

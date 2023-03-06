@@ -17,7 +17,10 @@ import 'package:lady_taxi/widgets/navigator_push_widget.dart';
 
 class HomePage extends StatefulWidget {
   UserModel user;
-  HomePage({super.key, required this.user});
+  HomePage({
+    super.key,
+    required this.user,
+  });
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -124,14 +127,14 @@ class _HomePageState extends State<HomePage> {
                             ),
                             SizedBox(height: 18.h),
                             Text(
-                              widget.user.fullName!,
+                              widget.user.fullName ?? "",
                               style: GoogleFonts.poppins(
                                   fontSize: 20.sp,
                                   color: Colors.white,
                                   fontWeight: FontWeight.w500),
                             ),
                             Text(
-                              widget.user.phoneNumber!,
+                              widget.user.phoneNumber ?? "0998",
                               style: GoogleFonts.poppins(
                                   color: Colors.white, fontSize: 15.sp),
                             )

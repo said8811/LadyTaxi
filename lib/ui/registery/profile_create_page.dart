@@ -6,6 +6,7 @@ import 'package:lady_taxi/cubit/register_cubit/register_user_cubit.dart';
 import 'package:lady_taxi/cubit/register_cubit/register_user_state.dart';
 import 'package:lady_taxi/data/local_data/local_database.dart';
 import 'package:lady_taxi/data/models/user_model.dart';
+import 'package:lady_taxi/data/repository/user_repository.dart';
 import 'package:lady_taxi/ui/home/home_page.dart';
 import 'package:lady_taxi/ui/registery/enter_phone_number.dart';
 import 'package:lady_taxi/utils/my_utils.dart';
@@ -122,12 +123,11 @@ class _ProfileCreatePageState extends State<ProfileCreatePage> {
         ),
         listener: (context, state) {
           if (state is UserRegisterInSucces) {
+            StorageRepository.saveId(state.user.id ?? "");
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => HomePage(
-                    user: state.user,
-                  ),
+                  builder: (context) => HomePage(user: state.user),
                 ));
           }
         },
