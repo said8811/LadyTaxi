@@ -85,7 +85,7 @@ class _ProfileCreatePageState extends State<ProfileCreatePage> {
                       SizedBox(height: 20.h),
                       Container(
                         padding: EdgeInsets.symmetric(horizontal: 8),
-                        height: 60,
+                        height: 47.h,
                         width: double.infinity,
                         child: DropdownButton(
                           borderRadius: BorderRadius.circular(24),
