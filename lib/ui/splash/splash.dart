@@ -24,8 +24,6 @@ class SplashPage extends StatefulWidget {
 
 class _SplashPageState extends State<SplashPage> {
   _nextPage() async {
-    String id = "a";
-
     Future.delayed(const Duration(seconds: 1)).then((value) async {
       if (id.isEmpty) {
         Navigator.pushReplacement(
@@ -39,7 +37,8 @@ class _SplashPageState extends State<SplashPage> {
           context,
           MaterialPageRoute(
             builder: (context) => HomePage(
-              user: UserModel(),
+              id: id,
+              token: token,
             ),
           ),
         );
@@ -48,8 +47,10 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   String id = "";
+  String token = "";
   _getId() async {
     id = await StorageRepository.getId();
+    token = await StorageRepository.gettoken();
     print("ID:$id");
   }
 
@@ -79,8 +80,13 @@ class _SplashPageState extends State<SplashPage> {
             ),
           );
         },
-        listener: (context, state) {
+        listener: (context, state) async {
           if (state is LoadLocationINSucces) {
+            await LocalDatabase.insertUser(
+                userModel: LocationModel(
+                    locationName: state.locationName,
+                    lattitude: state.position.lattitude,
+                    longtitude: state.position.longitude));
             _nextPage();
           }
         },

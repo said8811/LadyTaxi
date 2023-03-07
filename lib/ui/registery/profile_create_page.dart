@@ -124,10 +124,14 @@ class _ProfileCreatePageState extends State<ProfileCreatePage> {
         listener: (context, state) {
           if (state is UserRegisterInSucces) {
             StorageRepository.saveId(state.user.id ?? "");
+            StorageRepository.savetoken(state.user.accessToken ?? "");
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => HomePage(user: state.user),
+                  builder: (context) => HomePage(
+                    id: state.user.id ?? " ",
+                    token: state.user.accessToken ?? "",
+                  ),
                 ));
           }
         },

@@ -7,8 +7,8 @@ import 'package:lady_taxi/data/repository/user_repository/user_repository.dart';
 class UserCubit extends Cubit<UserState> {
   UserCubit({required this.repository}) : super(UserStateInLoad());
   UserRepository repository;
-  register(String id) async {
-    AppResponse myResponse = await repository.getUser(id);
+  register(String id, String token) async {
+    AppResponse myResponse = await repository.getUser(id, token);
     if (myResponse.errorTxt.isEmpty) {
       emit(UserStateInSucces(user: myResponse.data as UserModel));
     } else {

@@ -4,10 +4,14 @@ import 'package:lady_taxi/data/models/app_model.dart';
 import 'package:lady_taxi/data/models/register_models/verify_model.dart';
 
 class UserApiService extends UserApiClient {
-  Future<AppResponse> getUser(String id) async {
+  Future<AppResponse> getUser(String id, String token) async {
     AppResponse myRespone = AppResponse(errorTxt: "");
     try {
-      Response response = await dio.get("${dio.options.baseUrl}/user/$id");
+      Response response = await dio.get("${dio.options.baseUrl}/user/$id",
+          options: Options(headers: {
+            "Content-Type": "application/json",
+            "Authorization": token,
+          }));
       if (response.statusCode! >= 200 && response.statusCode! < 300) {
         print(response.statusCode);
         //print(response.data);

@@ -1,56 +1,51 @@
-// class UserField {
-//   static String id = "id";
-//   static String fish = "fish";
-//   static String date = "date";
-//   static String number = "number";
-//   static String imgUrl = 'imgUrl';
-// }
+class LocationField {
+  static String id = "id";
+  static String locationName = "locationName";
+  static String lattitude = "lattitude";
+  static String longtitude = "longtitude";
+  static String imgUrl = 'imgUrl';
+}
 
-// class UserModel {
-//   int? id;
-//   String fish;
-//   String date;
-//   String number;
-//   String imgUrl;
+class LocationModel {
+  int? id;
+  String locationName;
+  double lattitude;
+  double longtitude;
 
-//   UserModel(
-//       {this.id,
-//       required this.fish,
-//       required this.date,
-//       required this.number,
-//       required this.imgUrl});
+  LocationModel({
+    this.id,
+    required this.locationName,
+    required this.lattitude,
+    required this.longtitude,
+  });
 
-//   factory UserModel.fromJson(Map<String, dynamic> json) {
-//     return UserModel(
-//       id: json['id'] ?? -1,
-//       fish: json['fish'] ?? "",
-//       date: json['date'] ?? "",
-//       number: json['number'] ?? "",
-//       imgUrl: json['imgUrl'] ?? "",
-//     );
-//   }
-//   Map<String, dynamic> toJson() {
-//     return {
-//       'id': id,
-//       'fish': fish,
-//       'date': date,
-//       'number': number,
-//       'imgUrl': imgUrl,
-//     };
-//   }
+  factory LocationModel.fromJson(Map<String, dynamic> json) {
+    return LocationModel(
+      id: json['id'] ?? -1,
+      locationName: json['locationName'] ?? "",
+      lattitude: json['lattitude'] ?? 0.0,
+      longtitude: json['longtitude'] ?? 0.0,
+    );
+  }
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'locationName': locationName,
+      'lattitude': lattitude,
+      'longtitude': longtitude,
+    };
+  }
 
-//   UserModel copywith({
-//     int? id,
-//     String? fish,
-//     String? date,
-//     String? number,
-//     String? imgUrl,
-//   }) =>
-//       UserModel(
-//         id: id ?? this.id,
-//         fish: fish ?? this.fish,
-//         date: date ?? this.date,
-//         number: number ?? this.number,
-//         imgUrl: imgUrl ?? this.imgUrl,
-//       );
-// }
+  LocationModel copywith({
+    int? id,
+    String? locationName,
+    double? lattitude,
+    double? longtitude,
+  }) =>
+      LocationModel(
+        id: id ?? this.id,
+        locationName: locationName ?? this.locationName,
+        lattitude: lattitude ?? this.lattitude,
+        longtitude: longtitude ?? this.longtitude,
+      );
+}
