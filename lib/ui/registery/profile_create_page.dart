@@ -23,6 +23,12 @@ class _ProfileCreatePageState extends State<ProfileCreatePage> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController nameController = TextEditingController();
   TextEditingController dateController = TextEditingController();
+  String dropdownvalue = 'female';
+
+  var items = [
+    'female',
+    'male',
+  ];
 
   @override
   void initState() {
@@ -77,20 +83,28 @@ class _ProfileCreatePageState extends State<ProfileCreatePage> {
                                 borderSide: BorderSide.none)),
                       ),
                       SizedBox(height: 20.h),
-                      TextFormField(
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "Iltimos tug'ilgan sanangizni kiriting";
-                          }
-                        },
-                        controller: dateController,
-                        decoration: InputDecoration(
-                            filled: true,
-                            fillColor: Colors.grey[100],
-                            hintText: "Tug'ilgan sana",
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(12),
-                                borderSide: BorderSide.none)),
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 8),
+                        height: 60,
+                        width: double.infinity,
+                        child: DropdownButton(
+                          borderRadius: BorderRadius.circular(24),
+                          value: dropdownvalue,
+                          icon: const Icon(Icons.keyboard_arrow_down),
+                          items: items.map((String items) {
+                            return DropdownMenuItem(
+                              value: items,
+                              child: Text(items),
+                            );
+                          }).toList(),
+                          // After selecting the desired option,it will
+                          // change button value to selected value
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              dropdownvalue = newValue!;
+                            });
+                          },
+                        ),
                       ),
                     ],
                   ),
@@ -100,7 +114,9 @@ class _ProfileCreatePageState extends State<ProfileCreatePage> {
                   onTap: () async {
                     if (_formKey.currentState!.validate()) {
                       context.read<UserRegisterCubit>().register(
-                          nameController.text.trim(), "female", widget.token);
+                          nameController.text.trim(),
+                          dropdownvalue,
+                          widget.token);
                     }
                   },
                   child: Container(
