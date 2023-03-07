@@ -8,7 +8,10 @@ class VerifyCubit extends Cubit<VerifyState> {
   VerifyCubit({required this.registerRepository}) : super(VerifyInLoading());
   RegisterRepository registerRepository;
   verify(String number, String code) async {
-    AppResponse appResponse = await registerRepository.verify(number, code);
+    AppResponse appResponse = await registerRepository.verify(
+      number,
+      code,
+    );
 
     if (appResponse.errorTxt.isEmpty) {
       emit(VerifyInSucces(verifyModel: appResponse.data as UserModel));

@@ -118,12 +118,14 @@ class _EnterPinCodePageState extends State<EnterPinCodePage> {
                     color: Colors.blue,
                     decoration: TextDecoration.underline),
               ),
-              Spacer(),
+              const Spacer(),
               InkWell(
                 onTap: () {
                   if (controller.text.length == 4) {
                     context.read<VerifyCubit>().verify(
-                        widget.number.replaceAll("+", ""), controller.text);
+                          widget.number.replaceAll("+", ""),
+                          controller.text,
+                        );
                   }
                 },
                 child: Container(
