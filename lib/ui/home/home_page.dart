@@ -36,7 +36,17 @@ class _HomePageState extends State<HomePage> {
       Completer<GoogleMapController>();
   final GlobalKey<ScaffoldState> _key = GlobalKey();
   String location = "";
-  UserModel user = UserModel();
+  UserModel user = UserModel(
+      id: "",
+      fullName: "",
+      gender: "",
+      phoneNumber: "",
+      refreshToken: "",
+      accessToken: "",
+      isActive: false,
+      createdAt: "",
+      updatedAt: "",
+      deletedAt: "");
 
   void _showModalBottomSheet(BuildContext context) {
     showModalBottomSheet(
@@ -144,14 +154,14 @@ class _HomePageState extends State<HomePage> {
                               ),
                               SizedBox(height: 18.h),
                               Text(
-                                user.fullName ?? "",
+                                user.fullName,
                                 style: GoogleFonts.poppins(
                                     fontSize: 20.sp,
                                     color: Colors.white,
                                     fontWeight: FontWeight.w500),
                               ),
                               Text(
-                                user.phoneNumber ?? "0998",
+                                user.phoneNumber,
                                 style: GoogleFonts.poppins(
                                     color: Colors.white, fontSize: 15.sp),
                               )
@@ -180,6 +190,7 @@ class _HomePageState extends State<HomePage> {
                 child: Stack(
                   children: [
                     GoogleMap(
+                      compassEnabled: false,
                       padding: const EdgeInsets.all(16),
                       myLocationEnabled: true,
                       zoomControlsEnabled: false,
@@ -202,6 +213,7 @@ class _HomePageState extends State<HomePage> {
                         child: InkWell(
                           onTap: () {
                             _key.currentState!.openDrawer();
+                            print(user.fullName);
                           },
                           child: Container(
                             padding: const EdgeInsets.all(8).r,

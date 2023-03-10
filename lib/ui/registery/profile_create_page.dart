@@ -114,9 +114,7 @@ class _ProfileCreatePageState extends State<ProfileCreatePage> {
                   onTap: () async {
                     if (_formKey.currentState!.validate()) {
                       context.read<UserRegisterCubit>().register(
-                          nameController.text.trim(),
-                          dropdownvalue,
-                          widget.token);
+                          nameController.text.trim(), "erkak", widget.token);
                     }
                   },
                   child: Container(
@@ -139,14 +137,14 @@ class _ProfileCreatePageState extends State<ProfileCreatePage> {
         ),
         listener: (context, state) {
           if (state is UserRegisterInSucces) {
-            StorageRepository.saveId(state.user.id ?? "");
-            StorageRepository.savetoken(state.user.accessToken ?? "");
+            StorageRepository.saveId(state.user.id);
+            StorageRepository.savetoken(state.user.accessToken);
             Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => HomePage(
-                    id: state.user.id ?? " ",
-                    token: state.user.accessToken ?? "",
+                    id: state.user.id,
+                    token: state.user.accessToken,
                   ),
                 ));
           }

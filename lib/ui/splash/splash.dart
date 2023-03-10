@@ -25,7 +25,7 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   _nextPage() async {
     Future.delayed(const Duration(seconds: 1)).then((value) async {
-      if (id.isEmpty) {
+      if (token.isEmpty) {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(

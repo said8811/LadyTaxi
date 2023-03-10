@@ -46,13 +46,13 @@ class RegisterApiService extends RegisterApiClient {
     AppResponse myRespone = AppResponse(errorTxt: "");
     try {
       Response response = await dio.post("${dio.options.baseUrl}/user/register",
-          data: {"full_name": fullName, "gender": gender},
+          data: {"full_name": fullName, "gender": "ayol"},
           options: Options(headers: {
             "Content-Type": "application/json",
             "Authorization": token,
           }));
       if (response.statusCode! >= 200 && response.statusCode! < 300) {
-        print(response.statusCode);
+        //print(response.statusCode);
         myRespone.data = UserModel.fromJson(response.data);
       }
     } catch (e) {

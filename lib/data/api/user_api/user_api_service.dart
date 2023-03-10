@@ -7,7 +7,7 @@ class UserApiService extends UserApiClient {
   Future<AppResponse> getUser(String id, String token) async {
     AppResponse myRespone = AppResponse(errorTxt: "");
     try {
-      Response response = await dio.get("${dio.options.baseUrl}/user/$id",
+      Response response = await dio.get("${dio.options.baseUrl}/user",
           options: Options(headers: {
             "Content-Type": "application/json",
             "Authorization": token,

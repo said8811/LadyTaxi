@@ -99,7 +99,7 @@ class _ProfileSettingsPageState extends State<ProfileSettingsPage> {
                             borderRadius: BorderRadius.circular(12.r)),
                         child: Row(
                           children: [
-                            Text(widget.user.createdAt ?? ""),
+                            Text(widget.user.createdAt),
                             const Spacer(),
                             SvgPicture.asset("assets/svg/calendar.svg")
                           ],
