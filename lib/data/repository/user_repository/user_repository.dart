@@ -5,6 +5,5 @@ class UserRepository {
   UserRepository({required this.apiService});
   UserApiService apiService;
 
-  Future<AppResponse> getUser(String id, String token) =>
-      apiService.getUser(id, token);
+  Future<AppResponse> getUser(String token) => apiService.getUser(token);
 }

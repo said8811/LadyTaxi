@@ -42,7 +42,11 @@ void main() async {
     BlocProvider(
       create: (context) =>
           UserCubit(repository: UserRepository(apiService: UserApiService())),
-    )
+    ),
+    BlocProvider(
+      create: (context) =>
+          UserCubit(repository: UserRepository(apiService: UserApiService())),
+    ),
   ], child: const MyApp()));
 }
 

@@ -34,71 +34,74 @@ class _EnterNumberPageState extends State<EnterNumberPage> {
       ),
       body: SafeArea(
           child: BlocConsumer<RegisterCubit, RegisterState>(
-        builder: (context, state) => Container(
-          padding: const EdgeInsets.symmetric(horizontal: 24).r,
-          width: double.infinity,
-          decoration: const BoxDecoration(color: Colors.white),
-          child: Column(
-            children: [
-              SizedBox(height: 36.h),
-              Text(
-                "Ro'yxatdan o'tish uchun\ntelefon raqamingizni kiriting",
-                style: GoogleFonts.poppins(
-                    fontSize: 16.sp, fontWeight: FontWeight.w400),
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(height: 60.h),
-              TextFormField(
-                onChanged: (value) {
-                  if (value.length == 13) {
-                    IsNumber = true;
-                    number = value;
-                    setState(() {});
-                  }
-                },
-                initialValue: "+998",
-                keyboardType: TextInputType.phone,
-                style: GoogleFonts.inter(fontSize: 18.sp),
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12)),
-                    hintText: "Telefon raqam",
-                    labelText: "Telefon raqam"),
-              ),
-              const Spacer(),
-              InkWell(
-                onTap: () {
-                  if (IsNumber) {
-                    context
-                        .read<RegisterCubit>()
-                        .login(number.replaceAll("+", ""));
-                  }
-                },
-                child: Container(
-                  margin: const EdgeInsets.only(bottom: 24).r,
-                  height: 47.h,
-                  decoration: BoxDecoration(
-                      color: IsNumber
-                          ? MyColors.C_FE2E81
-                          : MyColors.C_FD0166.withOpacity(0.2),
-                      borderRadius: BorderRadius.circular(30).r),
-                  child: Center(
-                    child: Text(
-                      "Continue",
-                      style: TextStyle(
-                          fontSize: 14.sp,
-                          color: IsNumber
-                              ? Colors.white
-                              : MyColors.C_460000.withOpacity(0.7)),
+        builder: (context, state) {
+          return Container(
+            padding: const EdgeInsets.symmetric(horizontal: 24).r,
+            width: double.infinity,
+            decoration: const BoxDecoration(color: Colors.white),
+            child: Column(
+              children: [
+                SizedBox(height: 36.h),
+                Text(
+                  "Ro'yxatdan o'tish uchun\ntelefon raqamingizni kiriting",
+                  style: GoogleFonts.poppins(
+                      fontSize: 16.sp, fontWeight: FontWeight.w400),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 60.h),
+                TextFormField(
+                  onChanged: (value) {
+                    if (value.length == 13) {
+                      IsNumber = true;
+                      number = value;
+                      setState(() {});
+                    }
+                  },
+                  initialValue: "+998",
+                  keyboardType: TextInputType.phone,
+                  style: GoogleFonts.inter(fontSize: 18.sp),
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12)),
+                      hintText: "Telefon raqam",
+                      labelText: "Telefon raqam"),
+                ),
+                const Spacer(),
+                InkWell(
+                  onTap: () {
+                    if (IsNumber) {
+                      context
+                          .read<RegisterCubit>()
+                          .login(number.replaceAll("+", ""));
+                    }
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.only(bottom: 24).r,
+                    height: 47.h,
+                    decoration: BoxDecoration(
+                        color: IsNumber
+                            ? MyColors.C_FE2E81
+                            : MyColors.C_FD0166.withOpacity(0.2),
+                        borderRadius: BorderRadius.circular(30).r),
+                    child: Center(
+                      child: Text(
+                        "Continue",
+                        style: TextStyle(
+                            fontSize: 14.sp,
+                            color: IsNumber
+                                ? Colors.white
+                                : MyColors.C_460000.withOpacity(0.7)),
+                      ),
                     ),
                   ),
-                ),
-              )
-            ],
-          ),
-        ),
+                )
+              ],
+            ),
+          );
+        },
         listener: (context, state) {
           if (state is RegisterInSucces) {
+            Navigator.pop(context);
             Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -106,6 +109,30 @@ class _EnterNumberPageState extends State<EnterNumberPage> {
                     number: number,
                   ),
                 ));
+          }
+          if (state is RegisterInLoad) {
+            showDialog(
+              context: context,
+              builder: (context) => const AlertDialog(
+                title: Center(child: CircularProgressIndicator()),
+              ),
+            );
+          }
+          if (state is RegisterInError) {
+            Navigator.pop(context);
+            showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                title: Center(child: Text(state.errorTxt)),
+                actions: [
+                  TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text("Ok"))
+                ],
+              ),
+            );
           }
         },
       )),

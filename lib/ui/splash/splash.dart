@@ -33,11 +33,11 @@ class _SplashPageState extends State<SplashPage> {
           ),
         );
       } else {
+        context.read<UserCubit>().register(token);
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
             builder: (context) => HomePage(
-              id: id,
               token: token,
             ),
           ),
@@ -46,12 +46,12 @@ class _SplashPageState extends State<SplashPage> {
     });
   }
 
-  String id = "";
+  // String id = "";
   String token = "";
   _getId() async {
-    id = await StorageRepository.getId();
+    //  id = await StorageRepository.getId();
     token = await StorageRepository.gettoken();
-    print("ID:$id");
+    // print("ID:$id");
   }
 
   @override

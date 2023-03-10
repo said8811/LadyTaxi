@@ -153,12 +153,37 @@ class _EnterPinCodePageState extends State<EnterPinCodePage> {
         ),
         listener: (context, state) {
           if (state is VerifyInSucces) {
+            Navigator.pop(context);
             Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => ProfileCreatePage(
                   token: state.verifyModel.accessToken,
                 ),
+              ),
+            );
+          }
+          if (state is VerifyInLoading) {
+            showDialog(
+              context: context,
+              builder: (context) => const AlertDialog(
+                title: Center(child: CircularProgressIndicator()),
+              ),
+            );
+          }
+          if (state is VerifyInError) {
+            Navigator.pop(context);
+            showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                title: Center(child: Text(state.errorTxt)),
+                actions: [
+                  TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text("Ok"))
+                ],
               ),
             );
           }

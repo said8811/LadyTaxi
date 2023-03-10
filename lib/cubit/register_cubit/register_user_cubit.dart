@@ -7,6 +7,7 @@ class UserRegisterCubit extends Cubit<UserRegisterState> {
   UserRegisterCubit({required this.repository}) : super(UserRegisterInLoad());
   RegisterRepository repository;
   register(String fullName, String gender, String token) async {
+    emit(UserRegisterInLoad());
     AppResponse myResponse =
         await repository.registerUser(fullName, gender, token);
     if (myResponse.errorTxt.isEmpty) {

@@ -4,7 +4,7 @@ import 'package:lady_taxi/data/models/app_model.dart';
 import 'package:lady_taxi/data/models/register_models/verify_model.dart';
 
 class UserApiService extends UserApiClient {
-  Future<AppResponse> getUser(String id, String token) async {
+  Future<AppResponse> getUser(String token) async {
     AppResponse myRespone = AppResponse(errorTxt: "");
     try {
       Response response = await dio.get("${dio.options.baseUrl}/user",

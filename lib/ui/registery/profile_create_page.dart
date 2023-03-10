@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lady_taxi/cubit/register_cubit/register_user_cubit.dart';
 import 'package:lady_taxi/cubit/register_cubit/register_user_state.dart';
+import 'package:lady_taxi/cubit/user_cubit/user_cubit.dart';
 import 'package:lady_taxi/data/local_data/local_database.dart';
 import 'package:lady_taxi/data/models/user_model.dart';
 import 'package:lady_taxi/data/repository/user_repository.dart';
@@ -137,16 +138,41 @@ class _ProfileCreatePageState extends State<ProfileCreatePage> {
         ),
         listener: (context, state) {
           if (state is UserRegisterInSucces) {
-            StorageRepository.saveId(state.user.id);
-            StorageRepository.savetoken(state.user.accessToken);
-            Navigator.push(
+            context.read<UserCubit>().register(state.user.accessToken);
+            Navigator.pop(context);
+
+            Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
                   builder: (context) => HomePage(
-                    id: state.user.id,
                     token: state.user.accessToken,
                   ),
                 ));
+            StorageRepository.savetoken(state.user.accessToken);
+          }
+          if (state is UserRegisterInLoad) {
+            showDialog(
+              context: context,
+              builder: (context) => const AlertDialog(
+                title: Center(child: CircularProgressIndicator()),
+              ),
+            );
+          }
+          if (state is UserRegisterInError) {
+            Navigator.pop(context);
+            showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                title: Center(child: Text(state.errorTxt)),
+                actions: [
+                  TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text("Ok"))
+                ],
+              ),
+            );
           }
         },
       ),
