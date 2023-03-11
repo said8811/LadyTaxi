@@ -66,4 +66,17 @@ class LocalDatabase {
 
     return list;
   }
+
+  static Future<LocationModel> updateLocationById(
+      LocationModel location) async {
+    var database = await getInstance.getDb();
+    int id = await database.update(
+      tableName,
+      location.toJson(),
+      where: 'id = ?',
+      whereArgs: [location.id],
+    );
+    print("HAMMASI YAXSHI");
+    return location.copywith(id: id);
+  }
 }

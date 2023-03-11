@@ -140,7 +140,6 @@ class _ProfileCreatePageState extends State<ProfileCreatePage> {
           if (state is UserRegisterInSucces) {
             context.read<UserCubit>().register(state.user.accessToken);
             Navigator.pop(context);
-
             Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(

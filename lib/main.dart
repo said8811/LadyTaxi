@@ -22,9 +22,9 @@ void main() async {
   runApp(MultiBlocProvider(providers: [
     BlocProvider(
       create: (context) => LocationCubit(
-          locationRepository: LocationRepository(),
-          geocodingRepo: GeocodingRepo(apiService: ApiService()))
-        ..getLocation(),
+        geocodingRepo: GeocodingRepo(apiService: ApiService()),
+        locationRepository: LocationRepository(),
+      )..getLocation(),
     ),
     BlocProvider(
       create: (context) => RegisterCubit(

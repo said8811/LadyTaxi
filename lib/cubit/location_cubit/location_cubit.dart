@@ -10,17 +10,15 @@ class LocationCubit extends Cubit<LocationState> {
       : super(LoadLocationINLoading());
   LocationRepository locationRepository;
   GeocodingRepo geocodingRepo;
+
   getLocation() async {
     LatLong? latlong = await locationRepository.fetchCurrentLocation();
     if (latlong == null) {
-      emit(LoadLocationINError(errorTxt: "errorTxt"));
+      emit(LoadLocationINError(errorTxt: "Error"));
     } else {
-      AppResponse response = await geocodingRepo.getAddress(
-          LatLong(lattitude: latlong.lattitude, longitude: latlong.longitude),
-          "house");
+      AppResponse response = await geocodingRepo.getAddress(latlong, "house");
       if (response.errorTxt.isEmpty) {
-        emit(LoadLocationINSucces(
-            position: latlong, locationName: response.data as String));
+        emit(LoadLocationINSucces(position: latlong, locationName: ""));
       } else {
         emit(LoadLocationINSucces(
             position: latlong, locationName: response.errorTxt));
