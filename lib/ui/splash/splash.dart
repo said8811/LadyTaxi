@@ -46,12 +46,9 @@ class _SplashPageState extends State<SplashPage> {
     });
   }
 
-  // String id = "";
   String token = "";
   _getId() async {
-    //  id = await StorageRepository.getId();
     token = await StorageRepository.gettoken();
-    // print("ID:$id");
   }
 
   @override
