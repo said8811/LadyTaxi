@@ -5,7 +5,12 @@ import 'package:lady_taxi/utils/my_utils.dart';
 class MyContainer extends StatelessWidget {
   bool isDone;
   VoidCallback onTap;
-  MyContainer({super.key, required this.isDone, required this.onTap});
+  String text;
+  MyContainer(
+      {super.key,
+      required this.isDone,
+      required this.onTap,
+      required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +25,7 @@ class MyContainer extends StatelessWidget {
             borderRadius: BorderRadius.circular(30).r),
         child: Center(
           child: Text(
-            "Continue",
+            text,
             style: TextStyle(
                 fontSize: 14.sp,
                 color:

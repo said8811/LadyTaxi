@@ -119,6 +119,7 @@ class _EnterPinCodePageState extends State<EnterPinCodePage> {
               ),
               const Spacer(),
               MyContainer(
+                text: "Container",
                 onTap: () {
                   if (controller.text.length == 4) {
                     context.read<VerifyCubit>().verify(

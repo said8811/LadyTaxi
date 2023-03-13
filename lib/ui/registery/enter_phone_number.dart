@@ -75,6 +75,7 @@ class _EnterNumberPageState extends State<EnterNumberPage> {
                 ),
                 const Spacer(),
                 MyContainer(
+                  text: "Container",
                   isDone: IsNumber,
                   onTap: () {
                     if (IsNumber) {
