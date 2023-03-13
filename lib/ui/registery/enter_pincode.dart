@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lady_taxi/cubit/user_cubit/user_cubit.dart';
 import 'package:lady_taxi/cubit/verify_cubit/verify_cubit.dart';
 import 'package:lady_taxi/cubit/verify_cubit/verify_state.dart';
 import 'package:lady_taxi/data/repository/user_repository.dart';
@@ -9,7 +8,6 @@ import 'package:lady_taxi/ui/registery/profile_create_page.dart';
 import 'package:lady_taxi/utils/text_style.dart';
 import 'package:lady_taxi/ui/registery/widgets/pincode.dart';
 import 'package:lady_taxi/widgets/container_widget.dart';
-import 'package:pin_code_text_field/pin_code_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';

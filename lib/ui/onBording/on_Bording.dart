@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lady_taxi/data/models/lat_long_model.dart';
 import 'package:lady_taxi/data/models/on_Bording_model.dart';
 import 'package:lady_taxi/ui/registery/enter_phone_number.dart';
 import 'package:lady_taxi/utils/my_utils.dart';
