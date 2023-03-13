@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lady_taxi/data/models/on_Bording_model.dart';
 import 'package:lady_taxi/utils/my_utils.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lady_taxi/utils/text_style.dart';
 
 class MYRichText extends StatelessWidget {
