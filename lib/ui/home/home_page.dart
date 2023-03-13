@@ -14,7 +14,7 @@ import 'package:lady_taxi/data/models/user_model.dart';
 import 'package:lady_taxi/data/repository/user_repository/user_repository.dart';
 import 'package:lady_taxi/ui/home/widgets/bottom_sheets/bottom_sheet_direction.dart';
 import 'package:lady_taxi/ui/home/widgets/bottom_sheets/bottom_sheet_search.dart';
-import 'package:lady_taxi/ui/home/widgets/drawer.dart';
+import 'package:lady_taxi/ui/home/drawer/drawer.dart';
 import 'package:lady_taxi/utils/my_utils.dart';
 
 import 'widgets/bottom_sheets/bottom_sheet_widget.dart';
