@@ -6,7 +6,9 @@ import 'package:lady_taxi/cubit/verify_cubit/verify_state.dart';
 import 'package:lady_taxi/data/repository/user_repository.dart';
 import 'package:lady_taxi/ui/app_router.dart';
 import 'package:lady_taxi/ui/registery/profile_create_page.dart';
-import 'package:lady_taxi/widgets/pincode.dart';
+import 'package:lady_taxi/utils/text_style.dart';
+import 'package:lady_taxi/ui/registery/widgets/pincode.dart';
+import 'package:lady_taxi/widgets/container_widget.dart';
 import 'package:pin_code_text_field/pin_code_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -67,9 +69,10 @@ class _EnterPinCodePageState extends State<EnterPinCodePage> {
               RichText(
                 textAlign: TextAlign.center,
                 text: TextSpan(
-                    style: GoogleFonts.roboto(
+                    style: fontRobotoW400(
+                      appcolor: Colors.black,
+                    ).copyWith(
                       fontSize: 16.0.sp,
-                      color: Colors.black,
                     ),
                     children: [
                       const TextSpan(
@@ -117,7 +120,7 @@ class _EnterPinCodePageState extends State<EnterPinCodePage> {
                     decoration: TextDecoration.underline),
               ),
               const Spacer(),
-              InkWell(
+              MyContainer(
                 onTap: () {
                   if (controller.text.length == 4) {
                     context.read<VerifyCubit>().verify(
@@ -126,25 +129,7 @@ class _EnterPinCodePageState extends State<EnterPinCodePage> {
                         );
                   }
                 },
-                child: Container(
-                  margin: const EdgeInsets.only(bottom: 24).r,
-                  height: 47.h,
-                  decoration: BoxDecoration(
-                      color: controller.text.length == 4
-                          ? MyColors.C_FE2E81
-                          : MyColors.C_FD0166.withOpacity(0.2),
-                      borderRadius: BorderRadius.circular(30).r),
-                  child: Center(
-                    child: Text(
-                      "Continue",
-                      style: TextStyle(
-                          fontSize: 14.sp,
-                          color: controller.text.length == 4
-                              ? Colors.white
-                              : MyColors.C_460000.withOpacity(0.7)),
-                    ),
-                  ),
-                ),
+                isDone: controller.text.length == 4,
               )
             ],
           ),

@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lady_taxi/utils/text_style.dart';
 import 'package:pin_code_text_field/pin_code_text_field.dart';
 
-import '../utils/my_utils.dart';
+import '../../../utils/my_utils.dart';
 
 class MyPincode extends StatelessWidget {
   TextEditingController controller;
