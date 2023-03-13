@@ -75,7 +75,7 @@ class MyDrawer extends StatelessWidget {
                 children: [
                   InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context, "routeName");
+                      Navigator.pushNamed(context, RouteName.updateUser);
                     },
                     child: ListTile(
                       leading: SvgPicture.asset(
