@@ -74,9 +74,7 @@ class MyDrawer extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 children: [
                   InkWell(
-                    onTap: () {
-                      // NavigatorPush(context, index, user);
-                    },
+                    onTap: () {},
                     child: ListTile(
                       leading: SvgPicture.asset(
                         "assets/svg/person.svg",

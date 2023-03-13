@@ -5,12 +5,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lady_taxi/cubit/register_cubit/register_user_cubit.dart';
 import 'package:lady_taxi/cubit/register_cubit/register_user_state.dart';
 import 'package:lady_taxi/cubit/user_cubit/user_cubit.dart';
-import 'package:lady_taxi/data/local_data/local_database.dart';
-import 'package:lady_taxi/data/models/user_model.dart';
 import 'package:lady_taxi/data/repository/user_repository.dart';
 import 'package:lady_taxi/ui/app_router.dart';
-import 'package:lady_taxi/ui/home/home_page.dart';
-import 'package:lady_taxi/ui/registery/enter_phone_number.dart';
 import 'package:lady_taxi/utils/my_utils.dart';
 
 class ProfileCreatePage extends StatefulWidget {
