@@ -4,15 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:lady_taxi/cubit/user_cubit/user_cubit.dart';
 import 'package:lady_taxi/cubit/user_cubit/user_state.dart';
 import 'package:lady_taxi/data/local_data/local_database.dart';
 import 'package:lady_taxi/data/models/register_models/verify_model.dart';
 import 'package:lady_taxi/data/models/user_model.dart';
+import 'package:lady_taxi/ui/home/widgets/bottom_sheet_direction.dart';
+import 'package:lady_taxi/ui/home/widgets/bottom_sheet_widget.dart';
+import 'package:lady_taxi/ui/home/widgets/drawer.dart';
 import 'package:lady_taxi/utils/my_utils.dart';
-import 'package:lady_taxi/widgets/drawer_widget.dart';
 
 class HomePage extends StatefulWidget {
   String token;
@@ -44,6 +45,9 @@ class _HomePageState extends State<HomePage> {
     position = await LocalDatabase.getCachedUser();
   }
 
+  List<Widget> bottomSheets = [];
+  int currentBottomsheet = 0;
+
   @override
   void initState() {
     _getLocation();
@@ -54,72 +58,29 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _key,
-      drawer: Drawer(
-        child: Column(
-          children: [
-            Container(
-              decoration: const BoxDecoration(),
-              height: 275.h,
-              child: DrawerHeader(
-                duration: const Duration(seconds: 2),
-                curve: Curves.bounceInOut,
-                padding: const EdgeInsets.all(0),
-                margin: EdgeInsets.zero,
-                child: Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: MyColors.C_FE2E81,
-                  ),
-                  child: Stack(
-                    children: [
-                      SvgPicture.asset(
-                        "assets/svg/drawer_background.svg",
-                        fit: BoxFit.cover,
-                      ),
-                      Positioned(
-                        left: 25.w,
-                        bottom: 24.h,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SvgPicture.asset(
-                              "assets/svg/edit_icon.svg",
-                              width: 88.w,
-                            ),
-                            SizedBox(height: 18.h),
-                            Text(
-                              user.fullName,
-                              style: GoogleFonts.poppins(
-                                  fontSize: 20.sp,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                            Text(
-                              "+${user.phoneNumber}",
-                              style: GoogleFonts.poppins(
-                                  color: Colors.white, fontSize: 15.sp),
-                            )
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Expanded(
-              child: DrawerWidget(
-                context: context,
-                user: user,
-              ),
-            ),
-          ],
-        ),
-      ),
+      drawer: MyDrawer(user: user),
       body: BlocBuilder<UserCubit, UserState>(
         builder: (context, state) {
           if (state is UserStateInSucces) {
             user = state.user;
+            bottomSheets = [
+              BottomSheetCurrentLocation(
+                onTap: () {
+                  currentBottomsheet += 1;
+                  Navigator.pop(context);
+                  setState(() {
+                    _showModalBottomSheet(context, location);
+                  });
+                },
+                location: position.last.locationName,
+              ),
+              BottomSheetDirection(
+                name: user.fullName,
+                onTap: () => setState(() {
+                  currentBottomsheet++;
+                }),
+              ),
+            ];
             return SafeArea(
               child: Stack(
                 children: [
@@ -204,56 +165,17 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void _showModalBottomSheet(BuildContext context, String location) {
+  void _showModalBottomSheet(
+    BuildContext context,
+    String location,
+  ) {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(30))),
       builder: (context) {
-        return DraggableScrollableSheet(
-          expand: false,
-          initialChildSize: 0.25,
-          maxChildSize: 0.98,
-          minChildSize: 0.20,
-          builder: (context, scrollController) => SingleChildScrollView(
-            controller: scrollController,
-            child: Container(
-              padding: const EdgeInsets.all(24).r,
-              height: 200.h,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SvgPicture.asset("assets/svg/mark.svg"),
-                  SizedBox(height: 8.h),
-                  Text(
-                    location,
-                    maxLines: 3,
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      fontSize: 18.sp,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                  const Spacer(),
-                  Container(
-                    height: 47.h,
-                    decoration: BoxDecoration(
-                        color: MyColors.C_FE2E81,
-                        borderRadius: BorderRadius.circular(25)),
-                    child: Center(
-                      child: Text(
-                        "Jo'nash manzilim",
-                        style: GoogleFonts.roboto(
-                            fontSize: 16.sp, color: Colors.white),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
-        );
+        return bottomSheets[currentBottomsheet];
       },
     );
   }

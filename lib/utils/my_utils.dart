@@ -6,6 +6,8 @@ class MyColors {
   static Color C_FFB7D4 = const Color(0xFFFFB7D4);
   static Color C_460000 = const Color(0xFF460000);
   static Color C_C1C0C9 = const Color(0xFFC1C0C9);
+  static Color C_F0F0F0 = const Color(0xFFF0F0F0);
+  static Color C_121212 = const Color(0xFF121212);
 }
 
 class MyTimer {

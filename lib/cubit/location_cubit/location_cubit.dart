@@ -18,7 +18,8 @@ class LocationCubit extends Cubit<LocationState> {
     } else {
       AppResponse response = await geocodingRepo.getAddress(latlong, "house");
       if (response.errorTxt.isEmpty) {
-        emit(LoadLocationINSucces(position: latlong, locationName: ""));
+        emit(LoadLocationINSucces(
+            position: latlong, locationName: response.data));
       } else {
         emit(LoadLocationINSucces(
             position: latlong, locationName: response.errorTxt));
