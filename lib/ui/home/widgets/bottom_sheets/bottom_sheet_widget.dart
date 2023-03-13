@@ -17,7 +17,7 @@ class BottomSheetCurrentLocation extends StatelessWidget {
     return DraggableScrollableSheet(
       expand: false,
       initialChildSize: 0.25,
-      maxChildSize: 0.98,
+      maxChildSize: 0.35,
       minChildSize: 0.20,
       builder: (context, scrollController) => SingleChildScrollView(
         controller: scrollController,

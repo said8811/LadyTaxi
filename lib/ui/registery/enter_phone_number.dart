@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lady_taxi/cubit/login_cubit/login_cubit.dart';
 import 'package:lady_taxi/cubit/login_cubit/login_state.dart';
 import 'package:lady_taxi/ui/registery/enter_pincode.dart';
 import 'package:lady_taxi/utils/my_utils.dart';
-import 'package:toast/toast.dart';
+import 'package:lady_taxi/utils/text_style.dart';
 
 class EnterNumberPage extends StatefulWidget {
   const EnterNumberPage({super.key});
@@ -44,8 +43,8 @@ class _EnterNumberPageState extends State<EnterNumberPage> {
                 SizedBox(height: 36.h),
                 Text(
                   "Ro'yxatdan o'tish uchun\ntelefon raqamingizni kiriting",
-                  style: GoogleFonts.poppins(
-                      fontSize: 16.sp, fontWeight: FontWeight.w400),
+                  style: fontPoppinsW400(appcolor: Colors.black)
+                      .copyWith(fontSize: 16.sp),
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: 60.h),
@@ -59,7 +58,8 @@ class _EnterNumberPageState extends State<EnterNumberPage> {
                   },
                   initialValue: "+998",
                   keyboardType: TextInputType.phone,
-                  style: GoogleFonts.inter(fontSize: 18.sp),
+                  style: fontPoppinsW400(appcolor: Colors.black)
+                      .copyWith(fontSize: 18.sp),
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12)),

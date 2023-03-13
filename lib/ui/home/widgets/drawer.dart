@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lady_taxi/data/models/register_models/verify_model.dart';
 import 'package:lady_taxi/utils/my_utils.dart';
+import 'package:lady_taxi/utils/text_style.dart';
 
 class MyDrawer extends StatelessWidget {
   UserModel user;
@@ -46,15 +46,17 @@ class MyDrawer extends StatelessWidget {
                           SizedBox(height: 18.h),
                           Text(
                             user.fullName,
-                            style: GoogleFonts.poppins(
-                                fontSize: 20.sp,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500),
+                            style: fontPoppinsW500(
+                              appcolor: Colors.white,
+                            ).copyWith(
+                              fontSize: 20.sp,
+                            ),
                           ),
                           Text(
                             "+${user.phoneNumber}",
-                            style: GoogleFonts.poppins(
-                                color: Colors.white, fontSize: 15.sp),
+                            style: fontPoppinsW400(
+                              appcolor: Colors.white,
+                            ).copyWith(fontSize: 15.sp),
                           )
                         ],
                       ),

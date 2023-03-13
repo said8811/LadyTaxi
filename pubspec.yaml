@@ -66,6 +66,37 @@ flutter:
     - assets/images/
     - assets/svg/
 
+  
+  fonts:
+    
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Black.ttf
+        - asset: assets/fonts/Roboto-BlackItalic.ttf
+        - asset: assets/fonts/Roboto-Bold.ttf
+        - asset: assets/fonts/Roboto-BoldItalic.ttf
+        - asset: assets/fonts/Roboto-Italic.ttf
+        - asset: assets/fonts/Roboto-Light.ttf
+        - asset: assets/fonts/Roboto-LightItalic.ttf
+        - asset: assets/fonts/Roboto-Medium.ttf
+        - asset: assets/fonts/Roboto-MediumItalic.ttf
+        - asset: assets/fonts/Roboto-Regular.ttf
+        - asset: assets/fonts/Roboto-Thin.ttf
+        - asset: assets/fonts/Roboto-ThinItalic.ttf
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/popins/Poppins-Black.ttf
+        - asset: assets/fonts/popins/Poppins-BlackItalic.ttf
+        - asset: assets/fonts/popins/Poppins-Bold.ttf
+        - asset: assets/fonts/popins/Poppins-BoldItalic.ttf
+        - asset: assets/fonts/popins/Poppins-Italic.ttf
+        - asset: assets/fonts/popins/Poppins-Light.ttf
+        - asset: assets/fonts/popins/Poppins-LightItalic.ttf
+        - asset: assets/fonts/popins/Poppins-Medium.ttf
+        - asset: assets/fonts/popins/Poppins-MediumItalic.ttf
+        - asset: assets/fonts/popins/Poppins-Regular.ttf
+        - asset: assets/fonts/popins/Poppins-Thin.ttf
+        - asset: assets/fonts/popins/Poppins-ThinItalic.ttf
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

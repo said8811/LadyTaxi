@@ -10,10 +10,12 @@ import 'package:lady_taxi/cubit/user_cubit/user_state.dart';
 import 'package:lady_taxi/data/local_data/local_database.dart';
 import 'package:lady_taxi/data/models/register_models/verify_model.dart';
 import 'package:lady_taxi/data/models/user_model.dart';
-import 'package:lady_taxi/ui/home/widgets/bottom_sheet_direction.dart';
-import 'package:lady_taxi/ui/home/widgets/bottom_sheet_widget.dart';
+import 'package:lady_taxi/ui/home/widgets/bottom_sheets/bottom_sheet_direction.dart';
+import 'package:lady_taxi/ui/home/widgets/bottom_sheets/bottom_sheet_search.dart';
 import 'package:lady_taxi/ui/home/widgets/drawer.dart';
 import 'package:lady_taxi/utils/my_utils.dart';
+
+import 'widgets/bottom_sheets/bottom_sheet_widget.dart';
 
 class HomePage extends StatefulWidget {
   String token;
@@ -78,8 +80,11 @@ class _HomePageState extends State<HomePage> {
                 name: user.fullName,
                 onTap: () => setState(() {
                   currentBottomsheet++;
+                  Navigator.pop(context);
+                  _showModalBottomSheet(context, location);
                 }),
               ),
+              BottomSheetSearch()
             ];
             return SafeArea(
               child: Stack(
