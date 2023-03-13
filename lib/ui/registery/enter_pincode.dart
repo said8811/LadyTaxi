@@ -1,7 +1,10 @@
 import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lady_taxi/cubit/user_cubit/user_cubit.dart';
 import 'package:lady_taxi/cubit/verify_cubit/verify_cubit.dart';
 import 'package:lady_taxi/cubit/verify_cubit/verify_state.dart';
+import 'package:lady_taxi/data/repository/user_repository.dart';
+import 'package:lady_taxi/ui/app_router.dart';
 import 'package:lady_taxi/ui/registery/profile_create_page.dart';
 import 'package:pin_code_text_field/pin_code_text_field.dart';
 import 'package:flutter/material.dart';
@@ -20,16 +23,23 @@ class EnterPinCodePage extends StatefulWidget {
 class _EnterPinCodePageState extends State<EnterPinCodePage> {
   TextEditingController controller = TextEditingController(text: "");
   int left = 120;
+  late Timer timers;
   @override
   void initState() {
     super.initState();
-    Timer.periodic(const Duration(seconds: 1), (timer) {
+    timers = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (left != 0) {
         setState(() {
           left--;
         });
       }
     });
+  }
+
+  @override
+  void dispose() {
+    timers.cancel();
+    super.dispose();
   }
 
   @override
@@ -98,8 +108,14 @@ class _EnterPinCodePageState extends State<EnterPinCodePage> {
                   maxLength: 4,
                   onTextChanged: (text) {
                     text = controller.text;
-                    print(controller.text);
+
                     setState(() {});
+                    if (text.length == 4) {
+                      context.read<VerifyCubit>().verify(
+                            widget.number.replaceAll("+", ""),
+                            controller.text,
+                          );
+                    }
                   },
                   onDone: (text) {},
                   pinBoxWidth: 64.w,
@@ -151,17 +167,26 @@ class _EnterPinCodePageState extends State<EnterPinCodePage> {
             ],
           ),
         ),
-        listener: (context, state) {
+        listener: (context, state) async {
           if (state is VerifyInSucces) {
             Navigator.pop(context);
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => ProfileCreatePage(
-                  token: state.verifyModel.accessToken,
+            if (state.verifyModel.id.isEmpty) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProfileCreatePage(
+                    token: state.verifyModel.accessToken,
+                  ),
                 ),
-              ),
-            );
+              );
+            } else {
+              await context
+                  .read<UserCubit>()
+                  .register(state.verifyModel.accessToken);
+              Navigator.pushReplacementNamed(context, RouteName.home,
+                  arguments: state.verifyModel.accessToken);
+              StorageRepository.savetoken(state.verifyModel.accessToken);
+            }
           }
           if (state is VerifyInLoading) {
             showDialog(

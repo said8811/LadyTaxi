@@ -84,7 +84,7 @@ class _HomePageState extends State<HomePage> {
                   _showModalBottomSheet(context, location);
                 }),
               ),
-              BottomSheetSearch()
+              const BottomSheetSearch()
             ];
             return SafeArea(
               child: Stack(

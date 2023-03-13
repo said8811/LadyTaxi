@@ -9,9 +9,7 @@ import 'package:lady_taxi/widgets/indicator.dart';
 import 'package:lady_taxi/widgets/richtext.dart';
 
 class OnBordingPage extends StatefulWidget {
-  // LatLong latlong;
-  // String location;
-  OnBordingPage({
+  const OnBordingPage({
     Key? key,
   }) : super(key: key);
 

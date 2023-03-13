@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lady_taxi/data/models/register_models/verify_model.dart';
+import 'package:lady_taxi/data/repository/user_repository.dart';
+import 'package:lady_taxi/ui/app_router.dart';
 import 'package:lady_taxi/utils/my_utils.dart';
 import 'package:lady_taxi/utils/text_style.dart';
 
@@ -121,7 +123,9 @@ class MyDrawer extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
-                      // NavigatorPush(context, index, user);
+                      Navigator.pushReplacementNamed(
+                          context, RouteName.enterPhoneNumber);
+                      StorageRepository.savetoken("");
                     },
                     child: ListTile(
                       leading: SvgPicture.asset(

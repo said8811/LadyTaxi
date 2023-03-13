@@ -13,6 +13,7 @@ import 'package:lady_taxi/data/repository/location_repository.dart';
 import 'package:lady_taxi/data/repository/register_repos/login_repository.dart';
 import 'package:lady_taxi/data/repository/user_repository.dart';
 import 'package:lady_taxi/data/repository/user_repository/user_repository.dart';
+import 'package:lady_taxi/ui/app_router.dart';
 import 'package:lady_taxi/ui/splash/splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:toast/toast.dart';
@@ -64,6 +65,8 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.pink,
         ),
+        initialRoute: RouteName.splash,
+        onGenerateRoute: AppRoutes.generateRoute,
         home: const SplashPage(),
       ),
     );

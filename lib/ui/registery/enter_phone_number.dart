@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lady_taxi/cubit/login_cubit/login_cubit.dart';
 import 'package:lady_taxi/cubit/login_cubit/login_state.dart';
+import 'package:lady_taxi/data/repository/user_repository.dart';
 import 'package:lady_taxi/ui/registery/enter_pincode.dart';
 import 'package:lady_taxi/utils/my_utils.dart';
 import 'package:lady_taxi/utils/text_style.dart';
@@ -17,6 +18,12 @@ class EnterNumberPage extends StatefulWidget {
 class _EnterNumberPageState extends State<EnterNumberPage> {
   bool IsNumber = false;
   String number = '';
+  @override
+  void initState() {
+    StorageRepository.saveNavigate("/enterPhoneNumer");
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

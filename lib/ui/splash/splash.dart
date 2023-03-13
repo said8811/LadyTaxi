@@ -12,6 +12,7 @@ import 'package:lady_taxi/data/models/user_model.dart';
 import 'package:lady_taxi/data/repository/geo_coding.dart';
 import 'package:lady_taxi/data/repository/location_repository.dart';
 import 'package:lady_taxi/data/repository/user_repository.dart';
+import 'package:lady_taxi/ui/app_router.dart';
 import 'package:lady_taxi/ui/home/home_page.dart';
 import 'package:lady_taxi/ui/onBording/on_Bording.dart';
 
@@ -26,28 +27,19 @@ class _SplashPageState extends State<SplashPage> {
   _nextPage() async {
     Future.delayed(const Duration(seconds: 0)).then((value) async {
       if (token.isEmpty) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => OnBordingPage(),
-          ),
-        );
+        Navigator.pushReplacementNamed(context, navigate);
       } else {
         context.read<UserCubit>().register(token);
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => HomePage(
-              token: token,
-            ),
-          ),
-        );
+        Navigator.pushReplacementNamed(context, RouteName.home,
+            arguments: token);
       }
     });
   }
 
   String token = "";
+  String navigate = "OnBoarding";
   _getId() async {
+    navigate = await StorageRepository.getNavigate();
     token = await StorageRepository.gettoken();
   }
 
@@ -80,10 +72,11 @@ class _SplashPageState extends State<SplashPage> {
         listener: (context, state) async {
           if (state is LoadLocationINSucces) {
             await LocalDatabase.insertUser(
-                userModel: LocationModel(
-                    locationName: state.locationName,
-                    lattitude: state.position.lattitude,
-                    longtitude: state.position.longitude));
+              userModel: LocationModel(
+                  locationName: state.locationName,
+                  lattitude: state.position.lattitude,
+                  longtitude: state.position.longitude),
+            );
             _nextPage();
           }
         },

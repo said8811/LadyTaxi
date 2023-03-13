@@ -12,15 +12,15 @@ class StorageRepository {
     return await prefs.getString("id") ?? "";
   }
 
-  static Future<bool> saveLatLong(double lattitude) async {
+  static Future<bool> saveNavigate(String navigate) async {
     final prefs = await SharedPreferences.getInstance();
     print("Setga kirdi");
-    return await prefs.setDouble("lattitude", lattitude);
+    return await prefs.setString("navigate", navigate);
   }
 
-  static Future<double> getLatLong() async {
+  static Future<String> getNavigate() async {
     final prefs = await SharedPreferences.getInstance();
-    return await prefs.getDouble("lattitude") ?? 0.0;
+    return prefs.getString("navigate") ?? "onBoarding";
   }
 
   static Future<bool> savetoken(String token) async {
