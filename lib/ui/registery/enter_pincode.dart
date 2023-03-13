@@ -96,17 +96,18 @@ class _EnterPinCodePageState extends State<EnterPinCodePage> {
               ),
               SizedBox(height: 80.h),
               Container(
+                  decoration: const BoxDecoration(),
                   child: MyPincode(
-                controller: controller,
-                onChanges: (text) {
-                  text = controller.text;
-                  setState(() {});
-                },
-                onDone: (value) => context.read<VerifyCubit>().verify(
-                      widget.number.replaceAll("+", ""),
-                      value,
-                    ),
-              )),
+                    controller: controller,
+                    onChanges: (text) {
+                      text = controller.text;
+                      setState(() {});
+                    },
+                    onDone: (value) => context.read<VerifyCubit>().verify(
+                          widget.number.replaceAll("+", ""),
+                          value,
+                        ),
+                  )),
               SizedBox(height: 16.h),
               Text(
                 "Kod qayta yuborilsin",
