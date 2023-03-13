@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lady_taxi/ui/home/drawer/sub_screens/update_page.dart';
 import 'package:lady_taxi/ui/home/home_page.dart';
 import 'package:lady_taxi/ui/onBording/on_Bording.dart';
 import 'package:lady_taxi/ui/registery/enter_phone_number.dart';
@@ -13,6 +14,7 @@ abstract class RouteName {
   static const profileCreate = '/profileCreate';
   static const home = '/home';
   static const noInternet = '/noInternet';
+  static const updateUser = '/updateUser';
 }
 
 class AppRoutes {
@@ -24,6 +26,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const OnBordingPage());
       case RouteName.enterPhoneNumber:
         return MaterialPageRoute(builder: (_) => const EnterNumberPage());
+      case RouteName.updateUser:
+        return MaterialPageRoute(builder: (_) => const UpdateUserPage());
       case RouteName.profileCreate:
         return MaterialPageRoute(
             builder: (_) => ProfileCreatePage(
