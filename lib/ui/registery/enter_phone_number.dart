@@ -7,6 +7,7 @@ import 'package:lady_taxi/data/repository/user_repository.dart';
 import 'package:lady_taxi/ui/registery/enter_pincode.dart';
 import 'package:lady_taxi/utils/my_utils.dart';
 import 'package:lady_taxi/utils/text_style.dart';
+import 'package:lady_taxi/widgets/container_widget.dart';
 
 class EnterNumberPage extends StatefulWidget {
   const EnterNumberPage({super.key});
@@ -74,7 +75,8 @@ class _EnterNumberPageState extends State<EnterNumberPage> {
                       labelText: "Telefon raqam"),
                 ),
                 const Spacer(),
-                InkWell(
+                MyContainer(
+                  isDone: IsNumber,
                   onTap: () {
                     if (IsNumber) {
                       context
@@ -82,25 +84,6 @@ class _EnterNumberPageState extends State<EnterNumberPage> {
                           .login(number.replaceAll("+", ""));
                     }
                   },
-                  child: Container(
-                    margin: const EdgeInsets.only(bottom: 24).r,
-                    height: 47.h,
-                    decoration: BoxDecoration(
-                        color: IsNumber
-                            ? MyColors.C_FE2E81
-                            : MyColors.C_FD0166.withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(30).r),
-                    child: Center(
-                      child: Text(
-                        "Continue",
-                        style: TextStyle(
-                            fontSize: 14.sp,
-                            color: IsNumber
-                                ? Colors.white
-                                : MyColors.C_460000.withOpacity(0.7)),
-                      ),
-                    ),
-                  ),
                 )
               ],
             ),
