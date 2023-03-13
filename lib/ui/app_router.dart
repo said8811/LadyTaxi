@@ -9,7 +9,6 @@ abstract class RouteName {
   static const splash = '/splash';
   static const onBoarding = 'onBoarding';
   static const enterPhoneNumber = '/enterPhoneNumer';
-  static const languageChange = '/languageChange';
   static const about = '/about';
   static const profileCreate = '/profileCreate';
   static const home = '/home';
