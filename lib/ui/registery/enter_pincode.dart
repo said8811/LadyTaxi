@@ -6,6 +6,7 @@ import 'package:lady_taxi/cubit/verify_cubit/verify_state.dart';
 import 'package:lady_taxi/data/repository/user_repository.dart';
 import 'package:lady_taxi/ui/app_router.dart';
 import 'package:lady_taxi/ui/registery/profile_create_page.dart';
+import 'package:lady_taxi/widgets/pincode.dart';
 import 'package:pin_code_text_field/pin_code_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -95,37 +96,17 @@ class _EnterPinCodePageState extends State<EnterPinCodePage> {
               ),
               SizedBox(height: 80.h),
               Container(
-                child: PinCodeTextField(
-                  controller: controller,
-                  autofocus: true,
-                  highlight: true,
-                  pinBoxBorderWidth: 1.w,
-                  defaultBorderColor: const Color(0xFFEFEFEF),
-                  highlightColor: MyColors.C_FD0166.withOpacity(0.2),
-                  highlightPinBoxColor: MyColors.C_FD0166.withOpacity(0.2),
-                  pinBoxColor: const Color(0xFFEFEFEF).withOpacity(0.2),
-                  hasTextBorderColor: MyColors.C_FD0166.withOpacity(0.3),
-                  maxLength: 4,
-                  onTextChanged: (text) {
-                    text = controller.text;
-
-                    setState(() {});
-                    if (text.length == 4) {
-                      context.read<VerifyCubit>().verify(
-                            widget.number.replaceAll("+", ""),
-                            controller.text,
-                          );
-                    }
-                  },
-                  onDone: (text) {},
-                  pinBoxWidth: 64.w,
-                  pinBoxHeight: 52.h,
-                  pinBoxRadius: 12.r,
-                  wrapAlignment: WrapAlignment.spaceAround,
-                  pinTextStyle: GoogleFonts.roboto(fontSize: 22.0),
-                  keyboardType: TextInputType.number,
-                ),
-              ),
+                  child: MyPincode(
+                controller: controller,
+                onChanges: (text) {
+                  text = controller.text;
+                  setState(() {});
+                },
+                onDone: (value) => context.read<VerifyCubit>().verify(
+                      widget.number.replaceAll("+", ""),
+                      value,
+                    ),
+              )),
               SizedBox(height: 16.h),
               Text(
                 "Kod qayta yuborilsin",
@@ -180,15 +161,14 @@ class _EnterPinCodePageState extends State<EnterPinCodePage> {
                 ),
               );
             } else {
-              await context
-                  .read<UserCubit>()
-                  .register(state.verifyModel.accessToken);
-              Navigator.pushReplacementNamed(context, RouteName.home,
+              Navigator.pushNamedAndRemoveUntil(
+                  context, RouteName.home, (route) => false,
                   arguments: state.verifyModel.accessToken);
               StorageRepository.savetoken(state.verifyModel.accessToken);
             }
           }
           if (state is VerifyInLoading) {
+            // ignore: use_build_context_synchronously
             showDialog(
               context: context,
               builder: (context) => const AlertDialog(
