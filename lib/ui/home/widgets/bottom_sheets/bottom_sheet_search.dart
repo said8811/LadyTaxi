@@ -23,20 +23,10 @@ class BottomSheetSearch extends StatelessWidget {
           height: 290.h,
           child: Column(
             children: [
-              RichText(
-                textAlign: TextAlign.center,
-                text: TextSpan(
-                    style: fontRobotoW500(
-                      appcolor: Colors.black,
-                    ).copyWith(fontSize: 20.sp),
-                    children: [
-                      TextSpan(
-                          text: "Salom ",
-                          style: TextStyle(color: MyColors.C_FE2E81)),
-                      const TextSpan(
-                        text: "!",
-                      ),
-                    ]),
+              Text(
+                "Manzilni kiriting",
+                style: fontPoppinsW500(appcolor: Colors.black)
+                    .copyWith(fontSize: 18.sp),
               ),
               SizedBox(height: 20.h),
               InkWell(
