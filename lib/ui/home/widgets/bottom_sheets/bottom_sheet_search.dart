@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -48,7 +49,7 @@ class BottomSheetSearch extends StatelessWidget {
                     child: Row(
                       children: [
                         Text(
-                          "Current location",
+                          "Turgan joyim",
                           style: fontRobotoW400(appcolor: MyColors.C_121212)
                               .copyWith(fontSize: 14.sp),
                         ),
@@ -91,23 +92,26 @@ class BottomSheetSearch extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 60.h),
-              RichText(
-                textAlign: TextAlign.center,
-                text: TextSpan(
-                    style: GoogleFonts.roboto(
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black,
-                    ),
-                    children: [
-                      const TextSpan(
-                        text: "Saqlangan ",
+              BlocConsumer(
+                builder: (context, state) => RichText(
+                  textAlign: TextAlign.center,
+                  text: TextSpan(
+                      style: GoogleFonts.roboto(
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black,
                       ),
-                      TextSpan(
-                          text: "manzilar ",
-                          style: TextStyle(color: MyColors.C_FE2E81)),
-                      const TextSpan(text: "mavjud emas")
-                    ]),
+                      children: [
+                        const TextSpan(
+                          text: "Saqlangan ",
+                        ),
+                        TextSpan(
+                            text: "manzilar ",
+                            style: TextStyle(color: MyColors.C_FE2E81)),
+                        const TextSpan(text: "mavjud emas")
+                      ]),
+                ),
+                listener: (context, state) {},
               ),
             ],
           ),
