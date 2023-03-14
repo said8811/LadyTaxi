@@ -23,6 +23,11 @@ class BottomSheetSearch extends StatelessWidget {
           height: 290.h,
           child: Column(
             children: [
+              Container(
+                width: 20.w,
+                height: 1.h,
+                decoration: BoxDecoration(color: MyColors.C_FE2E81),
+              ),
               Text(
                 "Manzilni kiriting",
                 style: fontPoppinsW500(appcolor: Colors.black)
