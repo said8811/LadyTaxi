@@ -3,13 +3,22 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lady_taxi/cubit/search_cubit/search_cubit.dart';
+import 'package:lady_taxi/cubit/search_cubit/search_state.dart';
+import 'package:lady_taxi/data/models/search_model/search_model.dart';
 import 'package:lady_taxi/utils/text_style.dart';
 
 import '../../../../utils/my_utils.dart';
 
-class BottomSheetSearch extends StatelessWidget {
+class BottomSheetSearch extends StatefulWidget {
   const BottomSheetSearch({super.key});
 
+  @override
+  State<BottomSheetSearch> createState() => _BottomSheetSearchState();
+}
+
+class _BottomSheetSearchState extends State<BottomSheetSearch> {
+  String search = "";
   @override
   Widget build(BuildContext context) {
     return DraggableScrollableSheet(
@@ -21,7 +30,6 @@ class BottomSheetSearch extends StatelessWidget {
         controller: scrollController,
         child: Container(
           padding: const EdgeInsets.all(24).r,
-          height: 500.h,
           child: Column(
             children: [
               Container(
@@ -73,6 +81,10 @@ class BottomSheetSearch extends StatelessWidget {
                     width: 282.w,
                     height: 48.h,
                     child: TextField(
+                      onSubmitted: (value) {
+                        context.read<SearchCubit>().getSearch(value);
+                        search = value;
+                      },
                       decoration: InputDecoration(
                           fillColor: MyColors.C_121212.withOpacity(0.54),
                           border: InputBorder.none,
@@ -91,26 +103,95 @@ class BottomSheetSearch extends StatelessWidget {
                   )
                 ],
               ),
-              SizedBox(height: 60.h),
-              BlocConsumer(
-                builder: (context, state) => RichText(
-                  textAlign: TextAlign.center,
-                  text: TextSpan(
-                      style: GoogleFonts.roboto(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black,
-                      ),
+              BlocConsumer<SearchCubit, SearchState>(
+                builder: (context, state) {
+                  if (state is SearchLoadinglState) {
+                    return const Padding(
+                      padding: EdgeInsets.only(top: 20.0),
+                      child: Center(child: CircularProgressIndicator()),
+                    );
+                  }
+                  if (state is SearchErrorState) {
+                    return Center(
+                      child: Text(state.errorTxt),
+                    );
+                  }
+                  if (state is SearchSuccesState) {
+                    List<Addresses> addreses = state.searchModel.addresses!;
+                    return Column(
                       children: [
-                        const TextSpan(
-                          text: "Saqlangan ",
+                        SizedBox(height: 16.h),
+                        Row(
+                          children: [
+                            RichText(
+                              textAlign: TextAlign.center,
+                              text: TextSpan(
+                                  style: GoogleFonts.roboto(
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black,
+                                  ),
+                                  children: [
+                                    const TextSpan(
+                                      text: "Natija ",
+                                    ),
+                                    TextSpan(
+                                        text: '"$search" ',
+                                        style: TextStyle(
+                                            color: MyColors.C_FE2E81)),
+                                    const TextSpan(text: "uchun")
+                                  ]),
+                            ),
+                            const Spacer(),
+                            Text(
+                              "${addreses.length}ta",
+                              style:
+                                  fontPoppinsW500(appcolor: MyColors.C_FD0166),
+                            )
+                          ],
                         ),
-                        TextSpan(
-                            text: "manzilar ",
-                            style: TextStyle(color: MyColors.C_FE2E81)),
-                        const TextSpan(text: "mavjud emas")
-                      ]),
-                ),
+                        SizedBox(height: 12.h),
+                        ListView.builder(
+                          primary: false,
+                          shrinkWrap: true,
+                          itemCount: addreses.length,
+                          itemBuilder: (context, index) {
+                            return ListTile(
+                              contentPadding: const EdgeInsets.all(0),
+                              leading:
+                                  SvgPicture.asset("assets/icons/mark.svg"),
+                              title: Text(
+                                addreses[index].addressName,
+                                style: fontPoppinsW500(appcolor: Colors.black)
+                                    .copyWith(fontSize: 16.sp),
+                              ),
+                              minLeadingWidth: 20.w,
+                              subtitle: const Text("Tashkent,Uzbekiston"),
+                            );
+                          },
+                        ),
+                      ],
+                    );
+                  }
+                  return RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                        style: GoogleFonts.roboto(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black,
+                        ),
+                        children: [
+                          const TextSpan(
+                            text: "Kerakli ",
+                          ),
+                          TextSpan(
+                              text: "manzilni ",
+                              style: TextStyle(color: MyColors.C_FE2E81)),
+                          const TextSpan(text: "qidiring")
+                        ]),
+                  );
+                },
                 listener: (context, state) {},
               ),
             ],
