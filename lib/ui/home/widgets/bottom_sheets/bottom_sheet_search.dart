@@ -13,14 +13,14 @@ class BottomSheetSearch extends StatelessWidget {
   Widget build(BuildContext context) {
     return DraggableScrollableSheet(
       expand: false,
-      initialChildSize: 0.38,
-      maxChildSize: 0.50,
+      initialChildSize: 0.58,
+      maxChildSize: 0.80,
       minChildSize: 0.30,
       builder: (context, scrollController) => SingleChildScrollView(
         controller: scrollController,
         child: Container(
           padding: const EdgeInsets.all(24).r,
-          height: 290.h,
+          height: 500.h,
           child: Column(
             children: [
               Container(
@@ -37,27 +37,57 @@ class BottomSheetSearch extends StatelessWidget {
               Row(
                 children: [
                   SvgPicture.asset("assets/icons/location_elipse.svg"),
-                  InkWell(
-                    onTap: () {},
-                    borderRadius: BorderRadius.circular(16),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 20).r,
-                      height: 48.h,
-                      decoration: BoxDecoration(
-                          color: MyColors.C_F0F0F0,
-                          borderRadius: BorderRadius.circular(16.r)),
-                      child: Row(
-                        children: [
-                          Text(
-                            "Current location",
-                            style: fontRobotoW400(appcolor: MyColors.C_121212),
-                          ),
-                          const Spacer(),
-                          SvgPicture.asset("assets/svg/globe.svg"),
-                        ],
-                      ),
+                  SizedBox(width: 10.w),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 20).r,
+                    height: 48.h,
+                    width: 280.w,
+                    decoration: BoxDecoration(
+                        color: MyColors.C_FE2E81.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(16.r)),
+                    child: Row(
+                      children: [
+                        Text(
+                          "Current location",
+                          style: fontRobotoW400(appcolor: MyColors.C_121212)
+                              .copyWith(fontSize: 14.sp),
+                        ),
+                        const Spacer(),
+                        SvgPicture.asset("assets/icons/radar.svg"),
+                      ],
                     ),
                   ),
+                ],
+              ),
+              SizedBox(height: 22.h),
+              Row(
+                children: [
+                  SvgPicture.asset("assets/icons/mark.svg"),
+                  SizedBox(width: 10.w),
+                  Container(
+                    padding: const EdgeInsets.only(left: 10).r,
+                    decoration: BoxDecoration(
+                        color: Colors.grey[100],
+                        borderRadius: BorderRadius.circular(16.r)),
+                    width: 282.w,
+                    height: 48.h,
+                    child: TextField(
+                      decoration: InputDecoration(
+                          fillColor: MyColors.C_121212.withOpacity(0.54),
+                          border: InputBorder.none,
+                          hintText: "Qayerga borasiz?",
+                          hintStyle: fontRobotoW400(
+                                  appcolor: MyColors.C_121212.withOpacity(0.54))
+                              .copyWith(fontSize: 14.sp),
+                          suffixIcon: Padding(
+                            padding: const EdgeInsets.all(14.0),
+                            child: SvgPicture.asset(
+                              "assets/icons/mark_2.svg",
+                              height: 10.h,
+                            ),
+                          )),
+                    ),
+                  )
                 ],
               ),
               SizedBox(height: 60.h),
