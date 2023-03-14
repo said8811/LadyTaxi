@@ -34,30 +34,31 @@ class BottomSheetSearch extends StatelessWidget {
                     .copyWith(fontSize: 18.sp),
               ),
               SizedBox(height: 20.h),
-              InkWell(
-                onTap: () {},
-                borderRadius: BorderRadius.circular(16),
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20).r,
-                  height: 48.h,
-                  decoration: BoxDecoration(
-                      color: MyColors.C_F0F0F0,
-                      borderRadius: BorderRadius.circular(16.r)),
-                  child: Row(
-                    children: [
-                      Text(
-                        "Qayerga boramiz?",
-                        style: TextStyle(
-                            fontSize: 16.sp,
-                            color: MyColors.C_121212.withOpacity(0.54)),
+              Row(
+                children: [
+                  SvgPicture.asset("assets/icons/location_elipse.svg"),
+                  InkWell(
+                    onTap: () {},
+                    borderRadius: BorderRadius.circular(16),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 20).r,
+                      height: 48.h,
+                      decoration: BoxDecoration(
+                          color: MyColors.C_F0F0F0,
+                          borderRadius: BorderRadius.circular(16.r)),
+                      child: Row(
+                        children: [
+                          Text(
+                            "Current location",
+                            style: fontRobotoW400(appcolor: MyColors.C_121212),
+                          ),
+                          const Spacer(),
+                          SvgPicture.asset("assets/svg/globe.svg"),
+                        ],
                       ),
-                      const Spacer(),
-                      SvgPicture.asset("assets/svg/line.svg"),
-                      SizedBox(width: 10.w),
-                      SvgPicture.asset("assets/svg/globe.svg"),
-                    ],
+                    ),
                   ),
-                ),
+                ],
               ),
               SizedBox(height: 60.h),
               RichText(
