@@ -7,7 +7,6 @@ import 'package:lady_taxi/cubit/search_cubit/search_cubit.dart';
 import 'package:lady_taxi/cubit/search_cubit/search_state.dart';
 import 'package:lady_taxi/data/models/search_model/search_model.dart';
 import 'package:lady_taxi/utils/text_style.dart';
-
 import '../../../../utils/my_utils.dart';
 
 class BottomSheetSearch extends StatefulWidget {
