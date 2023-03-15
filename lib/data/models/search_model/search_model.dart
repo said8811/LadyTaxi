@@ -38,7 +38,7 @@ class Addresses {
 
   factory Addresses.fromJson(Map<String, dynamic> json) {
     return Addresses(
-        addressFullText: json['address_full_text'] as String? ?? "",
+        addressFullText: json['address_text'] as String? ?? "",
         addressName: json['address_name'] as String? ?? "",
         boundedBottonLat: json['bounded_botton_lat'] as double? ?? 0.0,
         boundedBottonLong: json['bounded_botton_long'] as double? ?? 0.0,

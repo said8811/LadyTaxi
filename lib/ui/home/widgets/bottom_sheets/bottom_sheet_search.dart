@@ -79,29 +79,34 @@ class _BottomSheetSearchState extends State<BottomSheetSearch> {
                         borderRadius: BorderRadius.circular(16.r)),
                     width: 282.w,
                     height: 48.h,
-                    child: TextField(
-                      onSubmitted: (value) {
-                        context.read<SearchCubit>().getSearch(value);
-                        search = value;
-                      },
-                      decoration: InputDecoration(
-                          fillColor: MyColors.C_121212.withOpacity(0.54),
-                          border: InputBorder.none,
-                          hintText: "Qayerga borasiz?",
-                          hintStyle: fontRobotoW400(
-                                  appcolor: MyColors.C_121212.withOpacity(0.54))
-                              .copyWith(fontSize: 14.sp),
-                          suffixIcon: Padding(
-                            padding: const EdgeInsets.all(14.0),
-                            child: SvgPicture.asset(
-                              "assets/icons/mark_2.svg",
-                              height: 10.h,
-                            ),
-                          )),
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 12).r,
+                      child: TextField(
+                        onSubmitted: (value) {
+                          context.read<SearchCubit>().getSearch(value);
+                          search = value;
+                        },
+                        decoration: InputDecoration(
+                            fillColor: MyColors.C_121212.withOpacity(0.54),
+                            border: InputBorder.none,
+                            hintText: "Qayerga borasiz?",
+                            hintStyle: fontRobotoW400(
+                                    appcolor:
+                                        MyColors.C_121212.withOpacity(0.54))
+                                .copyWith(fontSize: 14.sp),
+                            suffixIcon: Padding(
+                              padding: const EdgeInsets.all(14.0),
+                              child: SvgPicture.asset(
+                                "assets/icons/mark_2.svg",
+                                height: 10.h,
+                              ),
+                            )),
+                      ),
                     ),
                   )
                 ],
               ),
+              SizedBox(height: 20.h),
               BlocConsumer<SearchCubit, SearchState>(
                 builder: (context, state) {
                   if (state is SearchLoadinglState) {
@@ -165,7 +170,8 @@ class _BottomSheetSearchState extends State<BottomSheetSearch> {
                                     .copyWith(fontSize: 16.sp),
                               ),
                               minLeadingWidth: 20.w,
-                              subtitle: const Text("Tashkent,Uzbekiston"),
+                              subtitle:
+                                  Text("${addreses[index].addressFullText}"),
                             );
                           },
                         ),
