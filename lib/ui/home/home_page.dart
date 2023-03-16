@@ -9,6 +9,7 @@ import 'package:lady_taxi/cubit/user_cubit/user_cubit.dart';
 import 'package:lady_taxi/cubit/user_cubit/user_state.dart';
 import 'package:lady_taxi/data/api/user_api/user_api_service.dart';
 import 'package:lady_taxi/data/local_data/local_database.dart';
+import 'package:lady_taxi/data/models/lat_long_model.dart';
 import 'package:lady_taxi/data/models/register_models/verify_model.dart';
 import 'package:lady_taxi/data/models/user_model.dart';
 import 'package:lady_taxi/data/repository/user_repository/user_repository.dart';
@@ -51,7 +52,7 @@ class _HomePageState extends State<HomePage> {
 
   List<Widget> bottomSheets = [];
   int currentBottomsheet = 0;
-
+  Set<Marker> marks = {};
   @override
   void initState() {
     _getLocation();
@@ -90,29 +91,38 @@ class _HomePageState extends State<HomePage> {
                       _showModalBottomSheet(context, location);
                     }),
                   ),
-                  const BottomSheetSearch()
+                  BottomSheetSearch(
+                    onTap: (LatLong latLong) {
+                      Navigator.pop(context);
+                      marks.add(Marker(
+                          markerId: const MarkerId("destination"),
+                          position:
+                              LatLng(latLong.lattitude, latLong.longitude)));
+                      setState(() {});
+                    },
+                  )
                 ];
                 return SafeArea(
                   child: Stack(
                     children: [
                       GoogleMap(
-                        compassEnabled: false,
-                        padding: const EdgeInsets.all(16),
-                        myLocationEnabled: true,
-                        zoomControlsEnabled: false,
-                        zoomGesturesEnabled: true,
-                        mapType: MapType.normal,
-                        onMapCreated: (GoogleMapController controller) {
-                          _controller.complete(controller);
-                        },
-                        initialCameraPosition: CameraPosition(
-                          target: LatLng(
-                            position.last.lattitude,
-                            position.last.longtitude,
+                          compassEnabled: false,
+                          padding: const EdgeInsets.all(16),
+                          myLocationEnabled: true,
+                          zoomControlsEnabled: false,
+                          zoomGesturesEnabled: true,
+                          mapType: MapType.normal,
+                          onMapCreated: (GoogleMapController controller) {
+                            _controller.complete(controller);
+                          },
+                          initialCameraPosition: CameraPosition(
+                            target: LatLng(
+                              position.last.lattitude,
+                              position.last.longtitude,
+                            ),
+                            zoom: 15,
                           ),
-                          zoom: 15,
-                        ),
-                      ),
+                          markers: marks),
                       Positioned(
                           left: 20,
                           top: 32,

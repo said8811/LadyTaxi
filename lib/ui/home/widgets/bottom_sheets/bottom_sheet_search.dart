@@ -5,12 +5,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lady_taxi/cubit/search_cubit/search_cubit.dart';
 import 'package:lady_taxi/cubit/search_cubit/search_state.dart';
+import 'package:lady_taxi/data/models/lat_long_model.dart';
 import 'package:lady_taxi/data/models/search_model/search_model.dart';
 import 'package:lady_taxi/utils/text_style.dart';
 import '../../../../utils/my_utils.dart';
 
 class BottomSheetSearch extends StatefulWidget {
-  const BottomSheetSearch({super.key});
+  Function onTap;
+  BottomSheetSearch({super.key, required this.onTap});
 
   @override
   State<BottomSheetSearch> createState() => _BottomSheetSearchState();
@@ -31,11 +33,6 @@ class _BottomSheetSearchState extends State<BottomSheetSearch> {
           padding: const EdgeInsets.all(24).r,
           child: Column(
             children: [
-              Container(
-                width: 20.w,
-                height: 1.h,
-                decoration: BoxDecoration(color: MyColors.C_FE2E81),
-              ),
               Text(
                 "Manzilni kiriting",
                 style: fontPoppinsW500(appcolor: Colors.black)
@@ -161,6 +158,9 @@ class _BottomSheetSearchState extends State<BottomSheetSearch> {
                           itemCount: addreses.length,
                           itemBuilder: (context, index) {
                             return ListTile(
+                              onTap: () => widget.onTap.call(LatLong(
+                                  lattitude: addreses[index].coordinateLat,
+                                  longitude: addreses[index].coordinateLat)),
                               contentPadding: const EdgeInsets.all(0),
                               leading:
                                   SvgPicture.asset("assets/icons/mark.svg"),
