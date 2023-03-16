@@ -160,7 +160,7 @@ class _BottomSheetSearchState extends State<BottomSheetSearch> {
                             return ListTile(
                               onTap: () => widget.onTap.call(LatLong(
                                   lattitude: addreses[index].coordinateLat,
-                                  longitude: addreses[index].coordinateLat)),
+                                  longitude: addreses[index].coordinateLong)),
                               contentPadding: const EdgeInsets.all(0),
                               leading:
                                   SvgPicture.asset("assets/icons/mark.svg"),

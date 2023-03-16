@@ -93,9 +93,11 @@ class _HomePageState extends State<HomePage> {
                   ),
                   BottomSheetSearch(
                     onTap: (LatLong latLong) {
+                      print(latLong.lattitude);
+                      print(latLong.longitude);
                       Navigator.pop(context);
                       marks.add(Marker(
-                          markerId: const MarkerId("destination"),
+                          markerId: MarkerId("destination${latLong.lattitude}"),
                           position:
                               LatLng(latLong.lattitude, latLong.longitude)));
                       setState(() {});
