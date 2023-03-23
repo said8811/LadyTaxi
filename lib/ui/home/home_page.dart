@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -16,6 +17,7 @@ import 'package:lady_taxi/data/repository/user_repository/user_repository.dart';
 import 'package:lady_taxi/ui/home/widgets/bottom_sheets/bottom_sheet_direction.dart';
 import 'package:lady_taxi/ui/home/widgets/bottom_sheets/bottom_sheet_search.dart';
 import 'package:lady_taxi/ui/home/drawer/drawer.dart';
+import 'package:lady_taxi/utils/constants.dart';
 import 'package:lady_taxi/utils/my_utils.dart';
 
 import 'widgets/bottom_sheets/bottom_sheet_widget.dart';
@@ -53,6 +55,24 @@ class _HomePageState extends State<HomePage> {
   List<Widget> bottomSheets = [];
   int currentBottomsheet = 0;
   Set<Marker> marks = {};
+  List<LatLng> polyLineCoords = [];
+  getPolyPoints(LatLong latLong) async {
+    PolylinePoints polylinePoints = PolylinePoints();
+    PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
+        google_api_key,
+        PointLatLng(position.last.lattitude, position.last.longtitude),
+        PointLatLng(latLong.lattitude, latLong.longitude));
+    print(result.errorMessage);
+    print(result.points);
+    if (result.points.isNotEmpty) {
+      result.points.forEach((element) {
+        polyLineCoords.add(LatLng(element.latitude, element.longitude));
+      });
+      setState(() {});
+      print("notEMpty");
+    }
+  }
+
   @override
   void initState() {
     _getLocation();
@@ -93,13 +113,12 @@ class _HomePageState extends State<HomePage> {
                   ),
                   BottomSheetSearch(
                     onTap: (LatLong latLong) {
-                      print(latLong.lattitude);
-                      print(latLong.longitude);
                       Navigator.pop(context);
                       marks.add(Marker(
                           markerId: MarkerId("destination${latLong.lattitude}"),
                           position:
                               LatLng(latLong.lattitude, latLong.longitude)));
+                      getPolyPoints(latLong);
                       setState(() {});
                     },
                   )
@@ -108,23 +127,29 @@ class _HomePageState extends State<HomePage> {
                   child: Stack(
                     children: [
                       GoogleMap(
-                          compassEnabled: false,
-                          padding: const EdgeInsets.all(16),
-                          myLocationEnabled: true,
-                          zoomControlsEnabled: false,
-                          zoomGesturesEnabled: true,
-                          mapType: MapType.normal,
-                          onMapCreated: (GoogleMapController controller) {
-                            _controller.complete(controller);
-                          },
-                          initialCameraPosition: CameraPosition(
-                            target: LatLng(
-                              position.last.lattitude,
-                              position.last.longtitude,
-                            ),
-                            zoom: 15,
+                        compassEnabled: false,
+                        padding: const EdgeInsets.all(16),
+                        myLocationEnabled: true,
+                        zoomControlsEnabled: false,
+                        zoomGesturesEnabled: true,
+                        mapType: MapType.normal,
+                        onMapCreated: (GoogleMapController controller) {
+                          _controller.complete(controller);
+                        },
+                        initialCameraPosition: CameraPosition(
+                          target: LatLng(
+                            position.last.lattitude,
+                            position.last.longtitude,
                           ),
-                          markers: marks),
+                          zoom: 15,
+                        ),
+                        markers: marks,
+                        polylines: {
+                          Polyline(
+                              polylineId: PolylineId("route"),
+                              points: polyLineCoords)
+                        },
+                      ),
                       Positioned(
                           left: 20,
                           top: 32,

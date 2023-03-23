@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:lady_taxi/data/api/location_api/api_clint.dart';
 import 'package:lady_taxi/data/geocoding/geocoding.dart';
 import 'package:lady_taxi/data/models/app_model.dart';
+import 'package:lady_taxi/utils/constants.dart';
 
 class ApiService extends ApiClient {
   Future<AppResponse> getLocationName(
@@ -10,7 +11,7 @@ class ApiService extends ApiClient {
     try {
       late Response response;
       Map<String, String> queryParams = {
-        'apikey': "83de0b85-9f4e-401b-8570-e70b5be75ae5",
+        'apikey': googleApiKey,
         'geocode': geoCodeText,
         'lang': 'uz_UZ',
         'format': 'json',

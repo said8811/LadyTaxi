@@ -42,6 +42,7 @@ dependencies:
   pin_code_text_field: ^1.8.0
   sqflite: ^2.2.4+1
   google_maps_flutter: ^2.2.4
+  flutter_polyline_points: ^1.0.0
   dio: ^5.0.0
   json_serializable: ^6.6.1
   location: ^4.4.0
