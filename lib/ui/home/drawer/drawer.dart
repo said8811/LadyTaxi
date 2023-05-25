@@ -8,8 +8,8 @@ import 'package:lady_taxi/utils/my_utils.dart';
 import 'package:lady_taxi/utils/text_style.dart';
 
 class MyDrawer extends StatelessWidget {
-  UserModel user;
-  MyDrawer({super.key, required this.user});
+  final UserModel user;
+  const MyDrawer({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {

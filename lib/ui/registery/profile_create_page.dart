@@ -10,8 +10,8 @@ import 'package:lady_taxi/ui/app_router.dart';
 import 'package:lady_taxi/utils/my_utils.dart';
 
 class ProfileCreatePage extends StatefulWidget {
-  String token;
-  ProfileCreatePage({super.key, required this.token});
+  final String token;
+  const ProfileCreatePage({super.key, required this.token});
 
   @override
   State<ProfileCreatePage> createState() => _ProfileCreatePageState();
@@ -69,6 +69,7 @@ class _ProfileCreatePageState extends State<ProfileCreatePage> {
                         if (value!.isEmpty) {
                           return "Iltimos ism sharifingizni kiriting";
                         }
+                        return null;
                       },
                       controller: nameController,
                       decoration: InputDecoration(

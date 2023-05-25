@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:lady_taxi/data/models/on_Bording_model.dart';
 import 'package:lady_taxi/ui/registery/enter_phone_number.dart';
 import 'package:lady_taxi/utils/my_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lady_taxi/widgets/indicator.dart';
 import 'package:lady_taxi/widgets/richtext.dart';
+
+import '../../data/models/on_bording_model.dart';
 
 class OnBordingPage extends StatefulWidget {
   const OnBordingPage({

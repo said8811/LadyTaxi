@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lady_taxi/ui/home/drawer/sub_screens/update_page.dart';
 import 'package:lady_taxi/ui/home/home_page.dart';
-import 'package:lady_taxi/ui/onBording/on_Bording.dart';
+import 'package:lady_taxi/ui/onBording/on_bording.dart';
 import 'package:lady_taxi/ui/registery/enter_phone_number.dart';
 import 'package:lady_taxi/ui/registery/profile_create_page.dart';
 import 'package:lady_taxi/ui/splash/splash.dart';

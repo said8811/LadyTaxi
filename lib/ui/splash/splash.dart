@@ -6,15 +6,11 @@ import 'package:lady_taxi/cubit/location_cubit/location_state.dart';
 import 'package:lady_taxi/cubit/user_cubit/user_cubit.dart';
 import 'package:lady_taxi/data/api/location_api/api_service.dart';
 import 'package:lady_taxi/data/local_data/local_database.dart';
-import 'package:lady_taxi/data/models/lat_long_model.dart';
-import 'package:lady_taxi/data/models/register_models/verify_model.dart';
 import 'package:lady_taxi/data/models/user_model.dart';
 import 'package:lady_taxi/data/repository/geo_coding.dart';
 import 'package:lady_taxi/data/repository/location_repository.dart';
 import 'package:lady_taxi/data/repository/user_repository.dart';
 import 'package:lady_taxi/ui/app_router.dart';
-import 'package:lady_taxi/ui/home/home_page.dart';
-import 'package:lady_taxi/ui/onBording/on_Bording.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});

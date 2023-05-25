@@ -14,8 +14,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lady_taxi/utils/my_utils.dart';
 
 class EnterPinCodePage extends StatefulWidget {
-  String number;
-  EnterPinCodePage({super.key, required this.number});
+  final String number;
+  const EnterPinCodePage({super.key, required this.number});
 
   @override
   State<EnterPinCodePage> createState() => _EnterPinCodePageState();

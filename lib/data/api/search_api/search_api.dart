@@ -15,12 +15,9 @@ class SearchApiService extends RegisterApiClient {
             "Authorization": token,
           }));
       if (response.statusCode! >= 200 && response.statusCode! < 300) {
-        print(response.statusCode);
-        print(response.data);
         myRespone.data = SearchModel.fromJson(response.data);
       }
     } catch (e) {
-      print("ERRROOR: $e");
       myRespone.errorTxt = e.toString();
     }
     return myRespone;

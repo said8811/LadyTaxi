@@ -10,11 +10,9 @@ class RegisterApiService extends RegisterApiClient {
       Response response =
           await dio.post("${dio.options.baseUrl}/user/login/$number");
       if (response.statusCode! >= 200 && response.statusCode! < 300) {
-        print(response.statusCode);
         myRespone.data = response.data;
       }
     } catch (e) {
-      print(e);
       myRespone.errorTxt = e.toString();
     }
     return myRespone;
@@ -30,19 +28,16 @@ class RegisterApiService extends RegisterApiClient {
         "${dio.options.baseUrl}/user/verify/$number/$code",
       );
       if (response.statusCode! >= 200 && response.statusCode! < 300) {
-        print(response.statusCode);
-        print(response.data);
         myRespone.data = UserModel.fromJson(response.data);
       }
     } catch (e) {
-      print("ERRROOR: $e");
       myRespone.errorTxt = e.toString();
     }
     return myRespone;
   }
 
-  Future<AppResponse> Registery(
-      String fullName, String gender, String token) async {
+  Future<AppResponse> registery(
+      final String fullName, final String gender, final String token) async {
     AppResponse myRespone = AppResponse(errorTxt: "");
     try {
       Response response = await dio.post("${dio.options.baseUrl}/user/register",
@@ -56,7 +51,6 @@ class RegisterApiService extends RegisterApiClient {
         myRespone.data = UserModel.fromJson(response.data);
       }
     } catch (e) {
-      print(e);
       myRespone.errorTxt = e.toString();
     }
     return myRespone;

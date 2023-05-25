@@ -11,8 +11,8 @@ import 'package:lady_taxi/utils/text_style.dart';
 import '../../../../utils/my_utils.dart';
 
 class BottomSheetSearch extends StatefulWidget {
-  Function onTap;
-  BottomSheetSearch({super.key, required this.onTap});
+  final Function onTap;
+  const BottomSheetSearch({super.key, required this.onTap});
 
   @override
   State<BottomSheetSearch> createState() => _BottomSheetSearchState();
@@ -170,8 +170,7 @@ class _BottomSheetSearchState extends State<BottomSheetSearch> {
                                     .copyWith(fontSize: 16.sp),
                               ),
                               minLeadingWidth: 20.w,
-                              subtitle:
-                                  Text("${addreses[index].addressFullText}"),
+                              subtitle: Text(addreses[index].addressFullText),
                             );
                           },
                         ),

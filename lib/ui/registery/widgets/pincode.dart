@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lady_taxi/utils/text_style.dart';
 import 'package:pin_code_text_field/pin_code_text_field.dart';
@@ -8,11 +6,11 @@ import 'package:pin_code_text_field/pin_code_text_field.dart';
 import '../../../utils/my_utils.dart';
 
 class MyPincode extends StatelessWidget {
-  TextEditingController controller;
-  ValueChanged onChanges;
-  ValueChanged onDone;
+  final TextEditingController controller;
+  final ValueChanged onChanges;
+  final ValueChanged onDone;
 
-  MyPincode(
+  const MyPincode(
       {super.key,
       required this.controller,
       required this.onChanges,

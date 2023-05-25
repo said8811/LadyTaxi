@@ -18,5 +18,5 @@ class RegisterRepository {
 
   Future<AppResponse> registerUser(
           String fullName, String gender, String token) =>
-      apiService.Registery(fullName, gender, token);
+      apiService.registery(fullName, gender, token);
 }

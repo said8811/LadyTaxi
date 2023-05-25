@@ -23,8 +23,8 @@ import 'package:lady_taxi/utils/my_utils.dart';
 import 'widgets/bottom_sheets/bottom_sheet_widget.dart';
 
 class HomePage extends StatefulWidget {
-  String token;
-  HomePage({super.key, required this.token});
+  final String token;
+  const HomePage({super.key, required this.token});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -62,14 +62,11 @@ class _HomePageState extends State<HomePage> {
         google_api_key,
         PointLatLng(position.last.lattitude, position.last.longtitude),
         PointLatLng(latLong.lattitude, latLong.longitude));
-    print(result.errorMessage);
-    print(result.points);
+
     if (result.points.isNotEmpty) {
-      result.points.forEach((element) {
+      for (var element in result.points) {
         polyLineCoords.add(LatLng(element.latitude, element.longitude));
-      });
-      setState(() {});
-      print("notEMpty");
+      }
     }
   }
 
@@ -146,7 +143,7 @@ class _HomePageState extends State<HomePage> {
                         markers: marks,
                         polylines: {
                           Polyline(
-                              polylineId: PolylineId("route"),
+                              polylineId: const PolylineId("route"),
                               points: polyLineCoords)
                         },
                       ),

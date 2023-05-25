@@ -3,10 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lady_taxi/utils/my_utils.dart';
 
 class MyContainer extends StatelessWidget {
-  bool isDone;
-  VoidCallback onTap;
-  String text;
-  MyContainer(
+  final bool isDone;
+  final VoidCallback onTap;
+  final String text;
+  const MyContainer(
       {super.key,
       required this.isDone,
       required this.onTap,

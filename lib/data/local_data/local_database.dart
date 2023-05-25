@@ -76,7 +76,6 @@ class LocalDatabase {
       where: 'id = ?',
       whereArgs: [location.id],
     );
-    print("HAMMASI YAXSHI");
     return location.copywith(id: id);
   }
 }

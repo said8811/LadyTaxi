@@ -5,9 +5,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lady_taxi/utils/my_utils.dart';
 
 class BottomSheetCurrentLocation extends StatelessWidget {
-  String location;
-  VoidCallback onTap;
-  BottomSheetCurrentLocation(
+  final String location;
+  final VoidCallback onTap;
+  const BottomSheetCurrentLocation(
       {super.key, required this.location, required this.onTap});
 
   @override

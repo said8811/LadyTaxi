@@ -7,7 +7,7 @@ class SearchModel {
     if (json['addresses'] != null) {
       addresses = <Addresses>[];
       json['addresses'].forEach((v) {
-        addresses!.add(new Addresses.fromJson(v));
+        addresses!.add(Addresses.fromJson(v));
       });
     }
   }

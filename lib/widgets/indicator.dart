@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lady_taxi/utils/my_utils.dart';
 
 class MyIndicator extends StatefulWidget {
-  int currentIndex;
-  MyIndicator({super.key, required this.currentIndex});
+  final int currentIndex;
+  const MyIndicator({super.key, required this.currentIndex});
 
   @override
   State<MyIndicator> createState() => _MyIndicatorState();

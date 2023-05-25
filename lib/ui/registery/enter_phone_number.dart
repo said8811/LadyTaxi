@@ -16,7 +16,7 @@ class EnterNumberPage extends StatefulWidget {
 }
 
 class _EnterNumberPageState extends State<EnterNumberPage> {
-  bool IsNumber = false;
+  bool isNumber = false;
   String number = '';
   @override
   void initState() {
@@ -58,7 +58,7 @@ class _EnterNumberPageState extends State<EnterNumberPage> {
                 TextFormField(
                   onChanged: (value) {
                     if (value.length == 13) {
-                      IsNumber = true;
+                      isNumber = true;
                       number = value;
                       setState(() {});
                     }
@@ -76,9 +76,9 @@ class _EnterNumberPageState extends State<EnterNumberPage> {
                 const Spacer(),
                 MyContainer(
                   text: "Container",
-                  isDone: IsNumber,
+                  isDone: isNumber,
                   onTap: () {
-                    if (IsNumber) {
+                    if (isNumber) {
                       context
                           .read<RegisterCubit>()
                           .login(number.replaceAll("+", ""));

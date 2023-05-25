@@ -5,9 +5,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lady_taxi/utils/my_utils.dart';
 
 class BottomSheetDirection extends StatelessWidget {
-  String name;
-  VoidCallback onTap;
-  BottomSheetDirection({super.key, required this.name, required this.onTap});
+  final String name;
+  final VoidCallback onTap;
+  const BottomSheetDirection(
+      {super.key, required this.name, required this.onTap});
 
   @override
   Widget build(BuildContext context) {

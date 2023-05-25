@@ -10,6 +10,6 @@ class UpdateUserPage extends StatefulWidget {
 class _UpdateUserPageState extends State<UpdateUserPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return const Scaffold();
   }
 }

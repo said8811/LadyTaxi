@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:lady_taxi/data/api/location_api/custom_exception.dart';
 
 class ApiClient {
