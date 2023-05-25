@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:lady_taxi/data/models/on_Bording_model.dart';
+import 'package:lady_taxi/data/models/on_bording_model.dart';
 import 'package:lady_taxi/utils/my_utils.dart';
 import 'package:lady_taxi/utils/text_style.dart';
 
 class MYRichText extends StatelessWidget {
-  int index;
-  MYRichText({super.key, required this.index});
+  final int index;
+  const MYRichText({super.key, required this.index});
 
   @override
   Widget build(BuildContext context) {
